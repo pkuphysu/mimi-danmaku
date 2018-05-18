@@ -46,21 +46,30 @@ ipcRender.on("background", function(event, message) { // 监听父页面定义�
 	else canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1;";
 });
 
-ipcRender.on("setchannel", function(event, message) { // 监听父页面定义的端口
+ipcRender.on("setchannel", function(event, message) {
 	document.getElementById("channel").innerHTML = "频道：" + message;
-	document.getElementsByTagName("img")[0].src = "http://qr.liantu.com/api.php?text=http://zsq.im/danmaku/?channel=" + message;
-	//https://api.qrserver.com/v1/create-qr-code/?data=  http://zsq.im/qrcode?text=
+	document.getElementsByTagName("img")[0].src = "http://qr.liantu.com/api.php?text=https://zsq.im/danmaku/?channel=" + message;
+	//https://api.qrserver.com/v1/create-qr-code/?data=  https://zsq.im/qrcode?text=
 });
 
-ipcRender.on("danmaku", function(event, message) { // 监听父页面定义的端口
+ipcRender.on("danmaku", function(event, message) {
 	var msg = JSON.parse(message);
 	var messageArray = msg.content.split("|");
-	output[index] = createDanmaku(messageArray[0], messageArray[1], messageArray[2]);
-	index++;
+	output.push(createDanmaku(messageArray[0], messageArray[1], messageArray[2]));
+});
+
+ipcRender.on("remove", function(event, message) {
+	var msg = JSON.parse(message);
+	var messageArray = msg.content.split("|");
+	for (var i in output) {
+		output[i].x -= output[i].speed;
+		if (output[i].text == messageArray[0]) {
+			output.splice(i, 1); //会删除所有相同弹幕
+		}
+	}
 });
 
 var output = new Array();
-var index = 0;
 
 var canvas = document.createElement("canvas");
 var context = canvas.getContext("2d");
