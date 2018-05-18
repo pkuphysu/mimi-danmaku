@@ -1,6 +1,6 @@
 var ws = null;
-function wsinit(channel) {
-	ws = new WebSocket("wss://localhost:9005", headers = "danmaku" + channel);
+function wsinit(server, channel) {
+	ws = new WebSocket(server, headers = "danmaku" + channel);
 
 	ws.onopen = function() {
 		alert("系统消息：建立连接成功");
@@ -37,5 +37,5 @@ function wsreload() {
 	//if (getChannel() == currentChannel) return;
 	currentChannel = getChannel();
 	if (ws) ws.close();
-	wsinit(currentChannel);
+	wsinit(server, currentChannel);
 }
