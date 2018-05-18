@@ -31,6 +31,6 @@ function filter(index) {
 			break;
 		}
 	}
-	if (flag) allow(index); //弹幕过滤器，屏蔽指定用户等
+	if (flag) allow(index); //弹幕过滤器
 	else deny(index);
 }
