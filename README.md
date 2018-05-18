@@ -24,3 +24,6 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 Released under the GNU General Public License v3  
 http://www.gnu.org/licenses/gpl-3.0.html
 
+## Todo List
+改动即时生效，而无需重开弹幕窗口  
+设置弹幕过滤规则
