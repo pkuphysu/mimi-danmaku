@@ -34,3 +34,19 @@ function filter(index) {
 	if (flag) allow(index); //弹幕过滤器
 	else deny(index);
 }
+
+function clearAll() {
+	$("tbody").html('<tr>\
+					<td>欢迎使用米米弹幕</td>\
+					<td>\
+						<div class="btn-group" role="group">\
+							<button type="button" class="btn btn-success disabled">已通过</button>\
+							<button type="button" class="btn btn-danger disabled">禁止</button>\
+						</div>\
+					</td>\
+				</tr>');
+}
+
+function denyAll() {
+	for (var i = 0; i < outputArray.length; i++) deny(i);
+}
