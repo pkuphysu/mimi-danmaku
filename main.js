@@ -15,8 +15,10 @@ function createPanel() {
 
 	panelWindow = new BrowserWindow({
 		width: 400,
+		minWidth: 400,
 		height: electron.screen.getPrimaryDisplay().workAreaSize.height,
-		resizable: false,
+		minHeight: 400,
+		//resizable: false,
 		fullscreenable: false,
 		title: "Mimi Danmaku Panel"
 	})
@@ -27,7 +29,7 @@ function createPanel() {
 		slashes: true
 	}))
 
-	panelWindow.setPosition(0, 0, true);
+	//panelWindow.setPosition(0, 0, true);
 
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools()

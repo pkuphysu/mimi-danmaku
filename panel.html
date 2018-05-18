@@ -54,6 +54,13 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="form-group">
+		过滤规则<span class="text-muted">(使用空格分隔)</span>
+			<textarea class="form-control" rows="3" id="rule"></textarea>
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="form-group">
@@ -68,19 +75,19 @@
 		<button class="btn btn-default" onclick="about()">关于</button>
 	</div>
 	<div class="row" style="margin-top: 20px;">
-		<table class="table table-striped">
+		<table class="table table-striped" style="table-layout: fixed;">
 			<thead>
 				<tr>
 					<th>弹幕内容</th>
-					<th>审核</th>
+					<th style="width: 140px;">审核</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>欢迎使用米米弹幕</td>
-					<td style="max-width: 80px;">
-						<div class="form-inline">
-							<button type="button" class="btn btn-success disabled">通过</button>
+					<td>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-success disabled">已通过</button>
 							<button type="button" class="btn btn-danger disabled">禁止</button>
 						</div>
 					</td>
@@ -89,8 +96,6 @@
 		</table>
 	</div>
 </div>
-<!--<button onclick="createWindow()">开启</button>
-<button onclick="closeWindow()">关闭</button>-->
 
 <script src="js/base.js"></script>
 <script src="js/settings.js"></script>

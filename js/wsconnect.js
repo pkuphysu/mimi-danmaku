@@ -1,6 +1,6 @@
 var ws = null;
 function wsinit(channel) {
-	ws = new WebSocket("ws://localhost:9000", headers = "danmaku" + channel);
+	ws = new WebSocket("wss://localhost:9005", headers = "danmaku" + channel);
 
 	ws.onopen = function() {
 		alert("系统消息：建立连接成功");
@@ -13,9 +13,9 @@ function wsinit(channel) {
 		var index = outputArray.length;
 		$("tbody").prepend('<tr id="' + index + '">\
 					<td>' + messageArray[0] + '</td>\
-					<td style="max-width: 90px;">\
-						<div class="form-inline">\
-							<button type="button" class="btn btn-success" onclick="allow(' + index + ')">通过</button>\
+					<td>\
+						<div class="btn-group" role="group">\
+							<button type="button" class="btn btn-success" onclick="allow(' + index + ', true)">通过</button>\
 							<button type="button" class="btn btn-danger" onclick="deny(' + index + ')">禁止</button>\
 						</div>\
 					</td>\
@@ -23,9 +23,7 @@ function wsinit(channel) {
 		outputArray.push(msg);
 		if (options[3] == 0) allow(index);
 		else if (options[3] == 1) deny(index);
-		else {
-			;
-		}
+		else filter(index); //弹幕过滤器
 	}
 
 	ws.onerror = function() {
