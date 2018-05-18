@@ -1,4 +1,4 @@
-for (var i = 0; i < $(".btn-group").length; i++) {
+for (var i = 0; i < 4; i++) { //$(".btn-group").length
 	for (var j = 0; j < $(".btn-group").eq(i).find("button").length; j++) {
 		var target = $(".btn-group").eq(i).find("button").eq(j);
 		target.attr("i", i);

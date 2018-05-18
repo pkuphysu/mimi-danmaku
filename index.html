@@ -48,8 +48,8 @@ ipcRender.on("background", function(event, message) { // 监听父页面定义�
 
 ipcRender.on("setchannel", function(event, message) {
 	document.getElementById("channel").innerHTML = "频道：" + message;
-	document.getElementsByTagName("img")[0].src = "http://qr.liantu.com/api.php?text=https://zsq.im/danmaku/?channel=" + message;
-	//https://api.qrserver.com/v1/create-qr-code/?data=  https://zsq.im/qrcode?text=
+	document.getElementsByTagName("img")[0].src = "https://zsq.im/qrcode?text=https://zsq.im/danmaku/?channel=" + message;
+	//https://api.qrserver.com/v1/create-qr-code/?data=  http://qr.liantu.com/api.php?text=
 });
 
 ipcRender.on("danmaku", function(event, message) {
@@ -109,7 +109,7 @@ function createDanmaku(text, size, color) {
 }
 
 function draw(obj) {
-	context.font = "700 " + obj.size + "px 微软雅黑";
+	context.font = "700 " + obj.size + "px Microsoft YaHei";
 	context.fillStyle = obj.color;
 	context.fillText(obj.text, obj.x, obj.y);
 }
