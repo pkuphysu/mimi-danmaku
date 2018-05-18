@@ -25,7 +25,8 @@ Released under the GNU General Public License v3
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Todo List
-改动即时生效，而无需重开弹幕窗口  
+改动即时生效，而无需重开弹幕窗口（不便实现）  
 支持发送图片  
-从文件读取服务器连接、过滤规则、频道等配置信息  
-屏蔽指定用户
+关键字替换，而不是全部屏蔽  
+屏蔽指定用户  
+Gravatar头像
