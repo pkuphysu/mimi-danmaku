@@ -30,7 +30,9 @@ function createWindow() {
 
 		else mainWindow = new BrowserWindow({
 			width: 800,
+			minWidth: 400,
 			height: 600,
+			minHeight: 400,
 			transparent: !backgroundImage,
 			frame: true,
 			title: "Mimi Danmaku"
