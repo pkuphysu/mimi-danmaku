@@ -4,8 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="user-scalable=no"/>
 <title>Mimi Danmaku</title>
-<link rel="shortcut icon" href="../favicon.ico"/>
-<script src="cdn/jquery-3.2.1.min.js"></script>
+<script src="cdn/jquery-3.3.1.min.js"></script>
 <script>if (typeof module === "object") {window.jQuery = window.$ = module.exports;};</script>
 <style>
 body {
@@ -29,17 +28,11 @@ span {
 	</div>
 <script>
 /*
- * This work is under GNU General Public License.
- * Created by Steven Joe 'Mimi' Zhang in 2018.
- * https://galaxymimi.com
- */
-/*
 const {dialog} = require("electron").remote;
 function message(msg) {
 	dialog.showMessageBox({message : msg});
 }*/
 const ipcRender = require("electron").ipcRenderer;
-var option = null, channel, ws;
 
 ipcRender.on("background", function(event, message) { // 监听父页面定义的端口
 	if (message) canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1; background-image: url(" + Bg + ");";
@@ -48,7 +41,7 @@ ipcRender.on("background", function(event, message) { // 监听父页面定义�
 
 ipcRender.on("setchannel", function(event, message) {
 	document.getElementById("channel").innerHTML = "频道：" + message;
-	document.getElementsByTagName("img")[0].src = "https://zsq.im/qrcode?text=https://zsq.im/danmaku/?channel=" + message;
+	document.getElementsByTagName("img")[0].src = "https://zsq.im/qrcode?margin=3&text=https://zsq.im/danmaku/?channel=" + message;
 	//https://api.qrserver.com/v1/create-qr-code/?data=  http://qr.liantu.com/api.php?text=
 });
 
