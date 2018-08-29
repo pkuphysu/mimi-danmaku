@@ -28,8 +28,8 @@
 		<div class="form-group">
 		窗口叠放
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active">绝对置顶</button>
-				<button type="button" class="btn btn-default">始终置顶</button>
+				<button type="button" class="btn btn-default active">始终置顶</button>
+				<button type="button" class="btn btn-default">优先置顶</button>
 			</div>
 		</div>
 	</div>
@@ -48,9 +48,9 @@
 		<div class="form-group">
 		弹幕过滤
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active">默认允许</button>
+				<button type="button" class="btn btn-default active">自动过滤</button>
+				<button type="button" class="btn btn-default">默认允许</button>
 				<button type="button" class="btn btn-default">默认禁止</button>
-				<button type="button" class="btn btn-default">自动过滤</button>
 			</div>
 		</div>
 	</div>
@@ -76,7 +76,7 @@
 	</div>
 	<div class="row" style="margin-top: 10px;">
 		<button class="btn btn-primary" onclick="clearAll()">清空弹幕列表</button>
-		<button class="btn btn-danger" onclick="denyAll()" id="submit">清除所有弹幕</button>
+		<button class="btn btn-danger" onclick="denyAll()" id="submit">撤回所有弹幕</button>
 		<table class="table table-striped" style="table-layout: fixed; margin-top: 10px;">
 			<thead>
 				<tr>
