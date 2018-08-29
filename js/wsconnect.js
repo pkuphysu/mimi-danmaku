@@ -21,8 +21,8 @@ function wsinit(server, channel) {
 					</td>\
 				</tr>');
 		outputArray.push(msg);
-		if (options[3] == 0) allow(index);
-		else if (options[3] == 1) deny(index);
+		if (options[3] == 1) allow(index);
+		else if (options[3] == 2) deny(index);
 		else filter(index); //弹幕过滤器
 	}
 
