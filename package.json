@@ -15,6 +15,6 @@
   "author": "Mimi",
   "license": "GPL3.0",
   "devDependencies": {
-    "electron": "^2.0.3"
+    "electron": "^3.0.9"
   }
 }
