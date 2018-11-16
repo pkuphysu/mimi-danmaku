@@ -27,11 +27,18 @@ function filter(index) {
 	for (var i in ruleArray) {
 		if (ruleArray[i] == "") continue;
 		if (outputArray[index].content.split("|")[0].indexOf(ruleArray[i]) != -1) {
-			flag = false;
-			break;
+			if (options[4] == 0) {
+				flag = false;
+				break;
+			}
+			else {
+				var tmp = outputArray[index].content.split("|");
+				tmp[0] = tmp[0].split(ruleArray[i]).join("*");
+				outputArray[index].content = tmp.join("|");
+			}
 		}
 	}
-	if (flag) allow(index); //弹幕过滤器
+	if (flag && !outputArray[index].content.split("|")[0].split("").every(char => char == "*")) allow(index); //弹幕过滤器
 	else deny(index);
 }
 
