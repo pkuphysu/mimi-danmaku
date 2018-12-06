@@ -1,8 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="user-scalable=no"/>
 <title>Mimi Danmaku</title>
 <script src="cdn/jquery-3.3.1.min.js"></script>
 <script>if (typeof module === "object") {window.jQuery = window.$ = module.exports;};</script>
@@ -41,7 +40,7 @@ ipcRender.on("background", function(event, message) { // 监听父页面定义�
 
 ipcRender.on("setchannel", function(event, message) {
 	document.getElementById("channel").innerHTML = "频道：" + message;
-	document.getElementsByTagName("img")[0].src = "https://galaxymimi.com/api/qrcode/?margin=3&text=https://galaxymimi.com/danmaku/?channel=" + message;
+	document.getElementsByTagName("img")[0].src = "https://api.galaxymimi.com/qrcode/?margin=3&text=https://galaxymimi.com/danmaku/?channel=" + message;
 });
 
 ipcRender.on("danmaku", function(event, message) {
