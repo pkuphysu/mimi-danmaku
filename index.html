@@ -34,7 +34,7 @@ function message(msg) {
 const ipcRender = require("electron").ipcRenderer;
 
 ipcRender.on("background", function(event, message) { // 监听父页面定义的端口
-	if (message) canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1; background-image: url(" + Bg + ");";
+	if (message) canvas.style.cssText = `position: fixed; top: 0; left: 0; background-size: cover; z-index: -1; background-image: url(${Bg});`;
 	else canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1;";
 });
 
@@ -60,13 +60,13 @@ ipcRender.on("remove", function(event, message) {
 	}
 });
 
-var output = new Array();
+var output = [];
 
 var canvas = document.createElement("canvas");
 var context = canvas.getContext("2d");
 document.getElementsByTagName("body")[0].appendChild(canvas);
 
-var availableBg = new Array("sky.jpg", "bg1.jpg", "bg2.jpg");
+var availableBg = ["sky.jpg", "bg1.jpg", "bg2.jpg"];
 var Bg = "images/" + availableBg[Math.floor(Math.random() * availableBg.length)];
 
 var W = window.innerWidth;
@@ -75,7 +75,7 @@ canvas.width = W;
 canvas.height = H;
 var fontSize = H / 10;
 
-var availableColor = new Array("orange", "red", "blue", "purple", "green", "white");
+var availableColor = ["orange", "red", "blue", "purple", "green", "white"];
 
 window.onresize = function() {
 	console.warn("WTF?");
@@ -100,7 +100,7 @@ function createDanmaku(text, size, color) {
 }
 
 function draw(obj) {
-	context.font = "700 " + obj.size + "px Microsoft YaHei";
+	context.font = `700 ${obj.size}px Microsoft YaHei`;
 	context.fillStyle = obj.color;
 	context.fillText(obj.text, obj.x, obj.y);
 }
@@ -118,7 +118,6 @@ function drawAll() {
 }
 
 setInterval(drawAll, 20);
-
 </script>
 </body>
 </html>
