@@ -18,9 +18,9 @@ fs.readFile("config.json", function(err, data) {
 
 var mainWindow = null,
 	currentChannel = "default",
-	outputArray = new Array(),
-	allowArray = new Array(),
-	denyArray = new Array();
+	outputArray = [],
+	allowArray = [],
+	denyArray = [];
 
 var helpArray = [
 	["弹幕窗口将在全屏幕上浮动显示", "弹幕窗口将以窗口形式显示"],
@@ -91,5 +91,5 @@ function panelSubmit(event) {
 }
 
 function about() {
-	alert("Mimi Danmaku Ver 1.0.1\n\nWe are using Node.js " + process.versions.node + ", Chromium " + process.versions.chrome + ", and Electron " + process.versions.electron + ". Powered by Mimi.");
+	alert(`Mimi Danmaku Ver 1.0.3\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }

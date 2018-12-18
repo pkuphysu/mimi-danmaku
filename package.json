@@ -1,20 +1,23 @@
 {
 	"name": "MimiDanmaku",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Mimi Danmaku Client for Desktop Platform",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron ."
 	},
-	"repository": "https://github.com/stevenjoezhang/mimi-danmaku-client",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/stevenjoezhang/mimi-danmaku-client"
+	},
 	"keywords": [
 		"Mimi",
 		"Danmaku",
 		"Client"
 	],
 	"author": "Mimi",
-	"license": "GPL3.0",
-	"devDependencies": {
-		"electron": "^3.0.10"
+	"license": "ISC",
+	"dependencies": {
+		"electron": "^3.0.13"
 	}
 }
