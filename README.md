@@ -3,6 +3,8 @@
 A Websocket danmaku client based on Node.js and Electron.  
 基于Node.js和Electron构建的Websocket弹幕客户端。
 
+![](screenshot.png)
+
 ## To Use
 To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download) (which comes with [npm](http://npmjs.com)) installed on your computer.  
 You may need to install some dependency packages using npm.  
