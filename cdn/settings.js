@@ -2,7 +2,7 @@ const electron = require("electron").remote;
 const ipcRenderer = require("electron").ipcRenderer;
 const BrowserWindow = electron.BrowserWindow;
 const fs = require("fs");
-var server = "wss://localhost:9005",
+var server = "ws://localhost:9000",
 	rule = "",
 	channel = "default";
 
@@ -93,3 +93,13 @@ function panelSubmit(event) {
 function about() {
 	alert(`Mimi Danmaku Ver 1.0.3\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }
+
+document.addEventListener("dragover", function(event) {
+	event.preventDefault();
+	return false;
+}, false);
+
+document.addEventListener("drop", function(event) {
+	event.preventDefault();
+	return false;
+}, false);
