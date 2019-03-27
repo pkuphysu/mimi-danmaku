@@ -39,3 +39,7 @@ function wsreload() {
 	if (ws) ws.close();
 	wsinit(server, currentChannel);
 }
+
+setInterval(function() {
+	if (ws) ws.send("ping");
+}, 30000);

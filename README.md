@@ -1,7 +1,7 @@
 # Mimi Danmaku Client
 
-A Websocket danmaku client based on Node.js and Electron.  
-基于Node.js和Electron构建的Websocket弹幕客户端。
+基于Node.js和Electron构建的Websocket弹幕客户端。  
+A Websocket danmaku client based on Node.js and Electron.
 
 ![](screenshot.png)
 
@@ -11,9 +11,9 @@ You may need to install some dependency packages using npm.
 From your command line:
 ```bash
 # Clone this repository
-git clone https://github.com/stevenjoezhang/mimi-danmaku-client.git
+git clone https://github.com/stevenjoezhang/mimi-danmaku.git
 # Go into the repository
-cd mimi-danmaku-client
+cd mimi-danmaku
 # Install dependencies
 npm install
 # Run the app
