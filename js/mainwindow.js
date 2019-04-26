@@ -20,7 +20,10 @@ function createWindow() {
 				toolbar: false,
 				resizable: true,
 				//alwaysOnTop: true,
-				title: "Mimi Danmaku"
+				title: "Mimi Danmaku",
+				webPreferences: {
+					nodeIntegration: true
+				}
 			});
 
 			mainWindow.setIgnoreMouseEvents(true);
@@ -38,7 +41,10 @@ function createWindow() {
 			minHeight: 400,
 			transparent: !backgroundImage,
 			frame: true,
-			title: "Mimi Danmaku"
+			title: "Mimi Danmaku",
+			webPreferences: {
+				nodeIntegration: true
+			}
 		});
 
 		// and load the index.html of the app.

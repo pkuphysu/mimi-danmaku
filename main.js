@@ -20,7 +20,10 @@ function createPanel() {
 		minHeight: 400,
 		//resizable: false,
 		fullscreenable: false,
-		title: "Mimi Danmaku Panel"
+		title: "Mimi Danmaku Panel",
+		webPreferences: {
+			nodeIntegration: true
+		}
 	});
 
 	panelWindow.loadURL(url.format({

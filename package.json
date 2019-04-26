@@ -1,6 +1,6 @@
 {
 	"name": "mimi-danmaku",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Mimi Danmaku Client for Desktop Platform",
 	"main": "main.js",
 	"scripts": {
