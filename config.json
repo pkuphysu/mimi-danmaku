@@ -1,5 +1,5 @@
 {
 	"server": "wss://mimichat.herokuapp.com",
-	"rule": "苟利 蛤 江泽民 泽民 习包子 主席 刁包子 64 8x8 六四 五三五 微信 百度 薇信 卢本伟",
+	"rule": "",
 	"channel": "default"
 }
