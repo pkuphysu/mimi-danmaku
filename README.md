@@ -30,7 +30,6 @@ http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Todo List
 - [ ] 改动即时生效，而无需重开弹幕窗口（不便实现）
-- [ ] 支持发送图片
 - [ ] 屏蔽指定用户
-- [ ] Gravatar头像
 - [ ] 支持正则屏蔽
+- [ ] 支持投影屏幕（[electron/screen.md](https://github.com/electron/electron/blob/5-0-x/docs/api/screen.md)）
