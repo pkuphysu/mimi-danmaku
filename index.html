@@ -40,7 +40,7 @@ ipcRender.on("background", function(event, message) { // 监听父页面定义�
 
 ipcRender.on("setchannel", function(event, message) {
 	document.getElementById("channel").innerHTML = "频道：" + message;
-	document.getElementsByTagName("img")[0].src = "https://api.galaxymimi.com/qrcode/?margin=3&text=https://mimichat.herokuapp.com/danmaku/?channel=" + message;
+	document.getElementsByTagName("img")[0].src = "https://api.pkupi.com/qrcode/?margin=3&text=https://mimichat.herokuapp.com/danmaku/?channel=" + message;
 });
 
 ipcRender.on("danmaku", function(event, message) {
