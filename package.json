@@ -1,7 +1,7 @@
 {
 	"name": "mimi-danmaku",
 	"version": "1.0.5",
-	"description": "Mimi Danmaku Client for Desktop Platform",
+	"description": "Mimi Danmaku client for desktop platform.",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron ."
@@ -15,9 +15,9 @@
 		"Danmaku",
 		"Client"
 	],
-	"author": "Mimi",
+	"author": "Mimi <stevenjoezhang@gmail.com> https://zhangshuqiao.org",
 	"license": "GPL-3.0-or-later",
 	"dependencies": {
-		"electron": "^6.0.0"
+		"electron": "^6.0.12"
 	}
 }
