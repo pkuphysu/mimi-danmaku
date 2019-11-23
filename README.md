@@ -20,7 +20,6 @@ npm install
 # Run the app
 npm start
 ```
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell) or use `node` from the command prompt.
 
 ## Credits
 
@@ -36,4 +35,4 @@ http://www.gnu.org/licenses/gpl-3.0.html
 - [ ] 改动即时生效，而无需重开弹幕窗口（不便实现）
 - [ ] 屏蔽指定用户
 - [ ] 支持正则屏蔽
-- [ ] 支持投影屏幕（[electron/screen.md](https://github.com/electron/electron/blob/5-0-x/docs/api/screen.md)）
+- [x] 支持投影屏幕（[electron/screen.md](https://github.com/electron/electron/blob/5-0-x/docs/api/screen.md)）
