@@ -6,7 +6,7 @@ var server = "ws://localhost:9000",
 	rule = "",
 	channel = "default";
 
-fs.readFile("config.json", function(err, data) {
+fs.readFile("config.json", (err, data) => {
 	if (err) throw err;
 	var result = JSON.parse(data.toString());
 	server = result.server || server;
@@ -38,9 +38,9 @@ function getChannel() {
 	return channel;
 }
 
-window.addEventListener("beforeunload", e => {
+window.addEventListener("beforeunload", event => {
 	if (mainWindow) {
-		e.returnValue = false;
+		event.returnValue = false;
 		alert("弹幕窗口开启时无法退出控制面板");
 	}
 });

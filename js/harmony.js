@@ -24,21 +24,20 @@ function deny(index) {
 function filter(index) {
 	var ruleArray = $("#rule").val().split(" ");
 	var flag = true;
-	for (var i in ruleArray) {
-		if (ruleArray[i] == "") continue;
-		if (outputArray[index].content.split("|")[0].indexOf(ruleArray[i]) != -1) {
+	for (let rule of ruleArray) {
+		if (rule == "") continue;
+		if (outputArray[index].content.split("|")[0].indexOf(rule) != -1) {
 			if (options[4] == 0) {
 				flag = false;
 				break;
 			} else {
 				var tmp = outputArray[index].content.split("|");
-				tmp[0] = tmp[0].split(ruleArray[i]).join("*");
+				tmp[0] = tmp[0].split(rule).join("*");
 				outputArray[index].content = tmp.join("|");
 			}
 		}
 	}
-	if (flag && !outputArray[index].content.split("|")[0].split("").every(char => char == "*")) allow(index); //弹幕过滤器
-	else deny(index);
+	(flag && !outputArray[index].content.split("|")[0].split("").every(char => char == "*")) ? allow(index) : deny(index); //弹幕过滤器
 }
 
 function clearAll() {
@@ -54,5 +53,5 @@ function clearAll() {
 }
 
 function denyAll() {
-	for (var i = 0; i < outputArray.length; i++) deny(i);
+	for (let i in outputArray) deny(i);
 }

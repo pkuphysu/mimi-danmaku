@@ -33,23 +33,23 @@ function message(msg) {
 }*/
 const ipcRender = require("electron").ipcRenderer;
 
-ipcRender.on("background", function(event, message) { // 监听父页面定义的端口
-	if (message) canvas.style.cssText = `position: fixed; top: 0; left: 0; background-size: cover; z-index: -1; background-image: url(${Bg});`;
-	else canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1;";
+ipcRender.on("background", (event, message) => { // 监听父页面定义的端口
+	canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1;";
+	if (message) canvas.style.cssText += ` background-image: url(${Bg});`;
 });
 
-ipcRender.on("setchannel", function(event, message) {
+ipcRender.on("setchannel", (event, message) => {
 	document.getElementById("channel").innerHTML = "频道：" + message;
 	document.getElementsByTagName("img")[0].src = "https://api.pkupi.com/qrcode/?margin=3&text=https://mimichat.herokuapp.com/danmaku/?channel=" + message;
 });
 
-ipcRender.on("danmaku", function(event, message) {
+ipcRender.on("danmaku", (event, message) => {
 	var msg = JSON.parse(message);
 	var messageArray = msg.content.split("|");
 	output.push(createDanmaku(messageArray[0], messageArray[1], messageArray[2]));
 });
 
-ipcRender.on("remove", function(event, message) {
+ipcRender.on("remove", (event, message) => {
 	var msg = JSON.parse(message);
 	var messageArray = msg.content.split("|");
 	for (var i in output) {
@@ -87,12 +87,13 @@ window.onresize = function() {
 }
 
 function createDanmaku(text, size, color) {
-	var danmaku = new Object();
-	danmaku.speed = (W / 500) * (Math.random() * 0.5 + 0.75);
-	danmaku.x = W;
-	danmaku.y = Math.random() * H * 4 / 5 + fontSize;
-	danmaku.text = text;
-	danmaku.size = fontSize * size;
+	var danmaku = {
+		speed: (W / 500) * (Math.random() * 0.5 + 0.75),
+		x    : W,
+		y    : Math.random() * H * 4 / 5 + fontSize,
+		text : text,
+		size : fontSize * size
+	};
 	var reg = new RegExp("^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$");
 	if (reg.test(color)) danmaku.color = color;
 	else danmaku.color = availableColor[Math.floor(Math.random() * availableColor.length)];
@@ -107,7 +108,7 @@ function draw(obj) {
 
 function drawAll() {
 	context.clearRect(0, 0, W, H);
-	for (var i in output) {
+	for (let i in output) {
 		draw(output[i]);
 		output[i].x -= output[i].speed;
 		if (output[i].x < -context.measureText(output[i].text).width) {
