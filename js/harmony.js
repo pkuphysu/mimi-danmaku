@@ -30,8 +30,7 @@ function filter(index) {
 			if (options[4] == 0) {
 				flag = false;
 				break;
-			}
-			else {
+			} else {
 				var tmp = outputArray[index].content.split("|");
 				tmp[0] = tmp[0].split(ruleArray[i]).join("*");
 				outputArray[index].content = tmp.join("|");

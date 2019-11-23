@@ -81,8 +81,7 @@ function panelSubmit(event) {
 		$("#submit").removeClass("btn-danger");
 		$("#submit").addClass("btn-primary");
 		closeWindow();
-	}
-	else {
+	} else {
 		$("#submit").html("关闭弹幕窗口");
 		$("#submit").removeClass("btn-primary");
 		$("#submit").addClass("btn-danger");
