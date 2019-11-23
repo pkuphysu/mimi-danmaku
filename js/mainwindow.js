@@ -68,12 +68,12 @@ function createWindow() {
 		slashes: true
 	}));
 
-	mainWindow.webContents.on("did-finish-load", function() {
+	mainWindow.webContents.on("did-finish-load", () => {
 		mainWindow.webContents.send("background", backgroundImage);
 		mainWindow.webContents.send("setchannel", getChannel());
 	});
 
-	mainWindow.on("closed", function() {
+	mainWindow.on("closed", () => {
 		$("#submit").html("开启弹幕窗口");
 		$("#submit").removeClass("btn-danger");
 		$("#submit").addClass("btn-primary");

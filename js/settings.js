@@ -50,13 +50,13 @@ for (var i = 0; i < 5; i++) { //$(".btn-group").length
 		var target = $(".btn-group").eq(i).find("button").eq(j);
 		target.attr("i", i);
 		target.attr("j", j);
-		target.mouseover(function(event) {
+		target.mouseover(event => {
 			$("#help").html(helpArray[$(event.target).attr("i")][$(event.target).attr("j")]);
 		});
-		target.mouseout(function(event) {
+		target.mouseout(event => {
 			$("#help").html("欢迎使用米米弹幕");
 		});
-		target.click(function(event) {
+		target.click(event => {
 			changeOption($(event.target).attr("i"), $(event.target).attr("j"));
 		});
 	}
@@ -93,12 +93,12 @@ function about() {
 	alert(`Mimi Danmaku Ver 1.0.3\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }
 
-document.addEventListener("dragover", function(event) {
+document.addEventListener("dragover", event => {
 	event.preventDefault();
 	return false;
 }, false);
 
-document.addEventListener("drop", function(event) {
+document.addEventListener("drop", event => {
 	event.preventDefault();
 	return false;
 }, false);
