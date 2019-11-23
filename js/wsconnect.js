@@ -11,15 +11,15 @@ function wsinit(server, channel) {
 		if (msg.type != "user") return;
 		var messageArray = msg.content.split("|");
 		var index = outputArray.length;
-		$("tbody").prepend('<tr id="' + index + '">\
-					<td>' + messageArray[0] + '</td>\
-					<td>\
-						<div class="btn-group" role="group">\
-							<button type="button" class="btn btn-success" onclick="allow(' + index + ', true)">通过</button>\
-							<button type="button" class="btn btn-danger" onclick="deny(' + index + ')">禁止</button>\
-						</div>\
-					</td>\
-				</tr>');
+		$("tbody").prepend(`<tr id="${index}">
+					<td>${messageArray[0]}</td>
+					<td>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-success" onclick="allow(${index}, true)">通过</button>
+							<button type="button" class="btn btn-danger" onclick="deny(${index})">禁止</button>
+						</div>
+					</td>
+				</tr>`);
 		outputArray.push(msg);
 		if (options[3] == 1) allow(index);
 		else if (options[3] == 2) deny(index);
