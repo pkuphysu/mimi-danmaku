@@ -92,13 +92,3 @@ function panelSubmit(event) {
 function about() {
 	alert(`Mimi Danmaku Ver 1.0.3\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }
-
-document.addEventListener("dragover", event => {
-	event.preventDefault();
-	return false;
-}, false);
-
-document.addEventListener("drop", event => {
-	event.preventDefault();
-	return false;
-}, false);
