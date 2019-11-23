@@ -18,6 +18,6 @@
 	"author": "Mimi <stevenjoezhang@gmail.com> https://zhangshuqiao.org",
 	"license": "GPL-3.0-or-later",
 	"dependencies": {
-		"electron": "^7.0.0"
+		"electron": "^6.1.5"
 	}
 }
