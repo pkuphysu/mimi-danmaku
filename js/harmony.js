@@ -42,14 +42,14 @@ function filter(index) {
 
 function clearAll() {
 	$("tbody").html(`<tr>
-					<td>欢迎使用米米弹幕</td>
-					<td>
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-success disabled">已通过</button>
-							<button type="button" class="btn btn-danger disabled">禁止</button>
-						</div>
-					</td>
-				</tr>`);
+		<td>欢迎使用米米弹幕</td>
+		<td>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-success disabled">已通过</button>
+				<button type="button" class="btn btn-danger disabled">禁止</button>
+			</div>
+		</td>
+	</tr>`);
 }
 
 function denyAll() {

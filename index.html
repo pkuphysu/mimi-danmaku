@@ -27,7 +27,7 @@ span {
 	</div>
 <script>
 /*
-const {dialog} = require("electron").remote;
+const { dialog } = require("electron").remote;
 function message(msg) {
 	dialog.showMessageBox({message : msg});
 }*/
@@ -44,15 +44,13 @@ ipcRender.on("setchannel", (event, message) => {
 });
 
 ipcRender.on("danmaku", (event, message) => {
-	var msg = JSON.parse(message);
-	var messageArray = msg.content.split("|");
-	output.push(createDanmaku(messageArray[0], messageArray[1], messageArray[2]));
+	var messageArray = JSON.parse(message).content.split("|");
+	output.push(createDanmaku(...messageArray));
 });
 
 ipcRender.on("remove", (event, message) => {
-	var msg = JSON.parse(message);
-	var messageArray = msg.content.split("|");
-	for (var i in output) {
+	var messageArray = JSON.parse(message).content.split("|");
+	for (let i in output) {
 		output[i].x -= output[i].speed;
 		if (output[i].text == messageArray[0]) {
 			output.splice(i, 1); //会删除所有相同弹幕
@@ -95,8 +93,7 @@ function createDanmaku(text, size, color) {
 		size : fontSize * size
 	};
 	var reg = new RegExp("^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$");
-	if (reg.test(color)) danmaku.color = color;
-	else danmaku.color = availableColor[Math.floor(Math.random() * availableColor.length)];
+	danmaku.color = reg.test(color) ? color : availableColor[Math.floor(Math.random() * availableColor.length)];
 	return danmaku;
 }
 
@@ -106,7 +103,7 @@ function draw(obj) {
 	context.fillText(obj.text, obj.x, obj.y);
 }
 
-function drawAll() {
+setInterval(() => {
 	context.clearRect(0, 0, W, H);
 	for (let i in output) {
 		draw(output[i]);
@@ -116,9 +113,7 @@ function drawAll() {
 			console.log(i);
 		}
 	}
-}
-
-setInterval(drawAll, 20);
+}, 20);
 </script>
 </body>
 </html>
