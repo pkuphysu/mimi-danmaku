@@ -14,13 +14,13 @@ let panelWindow;
 function createPanel() {
 
 	panelWindow = new BrowserWindow({
-		width: 400,
-		minWidth: 400,
-		height: electron.screen.getPrimaryDisplay().workAreaSize.height,
-		minHeight: 400,
-		//resizable: false,
+		width         : 400,
+		minWidth      : 400,
+		height        : electron.screen.getPrimaryDisplay().workAreaSize.height,
+		minHeight     : 400,
+		//resizable     : false,
 		fullscreenable: false,
-		title: "Mimi Danmaku Panel",
+		title         : "Mimi Danmaku Panel",
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -29,7 +29,7 @@ function createPanel() {
 	panelWindow.loadURL(url.format({
 		pathname: path.join(__dirname, "panel.html"),
 		protocol: "file:",
-		slashes: true
+		slashes : true
 	}));
 
 	//panelWindow.setPosition(0, 0, true);

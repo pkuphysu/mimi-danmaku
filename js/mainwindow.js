@@ -12,30 +12,30 @@ function createWindow() {
 
 	if (fullScreen) {
 		let config = {
-			transparent: true,
-			frame: false,
-			toolbar: false,
-			resizable: true,
-			//alwaysOnTop: true,
-			title: "Mimi Danmaku",
+			transparent   : true,
+			frame         : false,
+			toolbar       : false,
+			resizable     : true,
+			//alwaysOnTop   : true,
+			title         : "Mimi Danmaku",
 			webPreferences: {
 				nodeIntegration: true
 			}
 		};
 		let displays = electron.screen.getAllDisplays();
 		let externalDisplay = displays.find(display => {
-			return display.bounds.x !== 0 || display.bounds.y !== 0
+			return display.bounds.x !== 0 || display.bounds.y !== 0;
 		});
 		if (externalDisplay && confirm("是否要在外部屏幕打开弹幕窗口？")) {
 			mainWindow = new BrowserWindow(Object.assign(config, {
-				x: externalDisplay.bounds.x,
-				y: externalDisplay.bounds.y,
-				width: externalDisplay.workAreaSize.width,
+				x     : externalDisplay.bounds.x,
+				y     : externalDisplay.bounds.y,
+				width : externalDisplay.workAreaSize.width,
 				height: externalDisplay.workAreaSize.height
 			}));
 		} else {
 			mainWindow = new BrowserWindow(Object.assign(config, {
-				width: electron.screen.getPrimaryDisplay().workAreaSize.width,
+				width : electron.screen.getPrimaryDisplay().workAreaSize.width,
 				height: electron.screen.getPrimaryDisplay().workAreaSize.height
 			}));
 		}
@@ -48,13 +48,13 @@ function createWindow() {
 		//mainWindow.setMenu(null);
 	} else {
 		mainWindow = new BrowserWindow({
-			width: 800,
-			minWidth: 400,
-			height: 600,
-			minHeight: 400,
-			transparent: !backgroundImage,
-			frame: true,
-			title: "Mimi Danmaku",
+			width         : 800,
+			minWidth      : 400,
+			height        : 600,
+			minHeight     : 400,
+			transparent   : !backgroundImage,
+			frame         : true,
+			title         : "Mimi Danmaku",
 			webPreferences: {
 				nodeIntegration: true
 			}
@@ -65,7 +65,7 @@ function createWindow() {
 	mainWindow.loadURL(url.format({
 		pathname: path.join(__dirname, "index.html"),
 		protocol: "file:",
-		slashes: true
+		slashes : true
 	}));
 
 	mainWindow.webContents.on("did-finish-load", () => {
