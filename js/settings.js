@@ -12,8 +12,8 @@ fs.readFile("config.json", (err, data) => {
 	server = result.server || server;
 	rule = result.rule || rule;
 	channel = result.channel || channel;
-	$("#rule").val(rule);
-	$("#channel").val(channel);
+	document.getElementById("rule").value = rule;
+	document.getElementById("channel").value = channel;
 });
 
 var mainWindow = null,
@@ -33,7 +33,7 @@ var options = [0, 0, 0, 0, 0];
 
 function getChannel() {
 	var reg = new RegExp(/[\x00-\xff]+/g);
-	var channel =  $("#channel").val() || "default";
+	var channel = document.getElementById("channel").value || "default";
 	if (!reg.test(channel)) channel = "default";
 	return channel;
 }
@@ -46,49 +46,48 @@ window.addEventListener("beforeunload", event => {
 });
 
 for (var i = 0; i < 5; i++) { //$(".btn-group").length
-	for (var j = 0; j < $(".btn-group").eq(i).find("button").length; j++) {
-		var target = $(".btn-group").eq(i).find("button").eq(j);
-		target.attr("i", i);
-		target.attr("j", j);
-		target.mouseover(event => {
-			$("#help").html(helpArray[$(event.target).attr("i")][$(event.target).attr("j")]);
+	[...document.querySelectorAll(".btn-group")[i].querySelectorAll("button")].forEach((target, j) => {
+		target.setAttribute("i", i);
+		target.setAttribute("j", j);
+		target.addEventListener("mouseover", event => {
+			document.getElementById("help").innerHTML = helpArray[event.target.getAttribute("i")][event.target.getAttribute("j")];
 		});
-		target.mouseout(event => {
-			$("#help").html("欢迎使用米米弹幕");
+		target.addEventListener("mouseout", event => {
+			document.getElementById("help").innerHTML = "欢迎使用米米弹幕";
 		});
-		target.click(event => {
-			changeOption($(event.target).attr("i"), $(event.target).attr("j"));
+		target.addEventListener("click", event => {
+			changeOption(event.target.getAttribute("i"), event.target.getAttribute("j"));
 		});
-	}
+	});
 }
 
 function changeOption(i, j) {
 	i = parseInt(i);
 	j = parseInt(j);
-	var target = $(".btn-group").eq(i).find("button");
-	target.removeClass("active");
-	target.eq(j).addClass("active");
+	var targets = document.querySelectorAll(".btn-group")[i].querySelectorAll("button");
+	[...targets].forEach(target => target.classList.remove("active"));
+	targets[j].classList.add("active");
 	options[i] = j;
 	if (i == 0) {
-		$(".row").eq(!j + 2).hide();
-		$(".row").eq(j + 2).show();
+		document.querySelectorAll(".row")[!j + 2].style.display = "none";
+		document.querySelectorAll(".row")[j + 2].style.display = "";
 	}
 }
 
 function panelSubmit(event) {
 	if (mainWindow) {
-		$("#submit").html("开启弹幕窗口");
-		$("#submit").removeClass("btn-danger");
-		$("#submit").addClass("btn-primary");
+		document.getElementById("submit").innerHTML = "开启弹幕窗口";
+		document.getElementById("submit").classList.remove("btn-danger");
+		document.getElementById("submit").classList.add("btn-primary");
 		closeWindow();
 	} else {
-		$("#submit").html("关闭弹幕窗口");
-		$("#submit").removeClass("btn-primary");
-		$("#submit").addClass("btn-danger");
+		document.getElementById("submit").innerHTML = "关闭弹幕窗口";
+		document.getElementById("submit").classList.remove("btn-primary");
+		document.getElementById("submit").classList.add("btn-danger");
 		createWindow();
 	}
 }
 
 function about() {
-	alert(`Mimi Danmaku Ver 1.0.3\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
+	alert(`Mimi Danmaku Ver ${require("./package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }

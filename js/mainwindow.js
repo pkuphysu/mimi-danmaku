@@ -74,9 +74,9 @@ function createWindow() {
 	});
 
 	mainWindow.on("closed", () => {
-		$("#submit").html("开启弹幕窗口");
-		$("#submit").removeClass("btn-danger");
-		$("#submit").addClass("btn-primary");
+		document.getElementById("submit").innerHTML = "开启弹幕窗口";
+		document.getElementById("submit").classList.remove("btn-danger");
+		document.getElementById("submit").classList.add("btn-primary");
 		mainWindow = null;
 	});
 }

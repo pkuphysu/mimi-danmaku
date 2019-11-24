@@ -1,32 +1,34 @@
 function allow(index, flag) {
-	var tar0 = $("#" + index).find("button").eq(0),
-		tar1 = $("#" + index).find("button").eq(1);
-	if (tar0.hasClass("disabled")) return;
+	var target = document.getElementById(index).querySelectorAll("button");
+	if (target[0].classList.contains("disabled")) return;
 	if (mainWindow) {
 		mainWindow.webContents.send("danmaku", JSON.stringify(outputArray[index]));
-		tar0.html("已通过").addClass("disabled");
-		tar1.html("禁止").removeClass("disabled");
+		target[0].innerHTML = "已通过";
+		target[0].classList.add("disabled");
+		target[1].innerHTML = "禁止";
+		target[1].classList.remove("disabled");
 	}
 	else if (flag) alert("请先开启弹幕窗口！");
 }
 
 function deny(index) {
-	var tar0 = $("#" + index).find("button").eq(0),
-		tar1 = $("#" + index).find("button").eq(1);
-	if ($("#" + index).find("button").eq(1).hasClass("disabled")) return;
-	tar0.html("通过").removeClass("disabled");
-	tar1.html("已禁止").addClass("disabled");
+	var target = document.getElementById(index).querySelectorAll("button");
+	if (target[1].classList.contains("disabled")) return;
+	target[0].innerHTML = "通过";
+	target[0].classList.remove("disabled");
+	target[1].innerHTML = "已禁止";
+	target[1].classList.add("disabled");
 	if (mainWindow) {
 		mainWindow.webContents.send("remove", JSON.stringify(outputArray[index]));
 	}
 }
 
 function filter(index) {
-	var ruleArray = $("#rule").val().split(" ");
+	var ruleArray = document.getElementById("rule").value.split(" ");
 	var flag = true;
 	for (let rule of ruleArray) {
 		if (rule == "") continue;
-		if (outputArray[index].content.split("|")[0].indexOf(rule) != -1) {
+		if (outputArray[index].content.split("|")[0].includes(rule)) {
 			if (options[4] == 0) {
 				flag = false;
 				break;
@@ -41,7 +43,7 @@ function filter(index) {
 }
 
 function clearAll() {
-	$("tbody").html(`<tr>
+	document.querySelector("tbody").innerHTML = `<tr>
 		<td>欢迎使用米米弹幕</td>
 		<td>
 			<div class="btn-group" role="group">
@@ -49,7 +51,7 @@ function clearAll() {
 				<button type="button" class="btn btn-danger disabled">禁止</button>
 			</div>
 		</td>
-	</tr>`);
+	</tr>`;
 }
 
 function denyAll() {

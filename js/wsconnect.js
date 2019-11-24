@@ -11,7 +11,7 @@ function wsinit(server, channel) {
 		if (msg.type != "user") return;
 		var messageArray = msg.content.split("|");
 		var index = outputArray.length;
-		$("tbody").prepend(`<tr id="${index}">
+		document.querySelector("tbody").insertAdjacentHTML("afterbegin", `<tr id="${index}">
 			<td>${messageArray[0]}</td>
 			<td>
 				<div class="btn-group" role="group">
