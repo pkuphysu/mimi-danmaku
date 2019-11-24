@@ -12,13 +12,6 @@ var mainWindow = null,
 	allowArray = [],
 	denyArray = [];
 
-var helpArray = [
-	["弹幕窗口将在全屏幕上浮动显示", "弹幕窗口将以窗口形式显示"],
-	["窗口将始终处于屏幕顶层，即使存在其他全屏应用", "使用其他全屏应用时，弹幕窗口可能不会置顶"],
-	["弹幕窗口背景透明", "弹幕窗口使用系统预设背景"],
-	["弹幕按照规则自动过滤", "默认允许所有弹幕", "默认禁止所有弹幕"],
-	["含有屏蔽词的弹幕直接禁止", "替换屏蔽词为*"]
-];
 var options = [0, 0, 0, 0, 0];
 
 function getChannel() {
@@ -35,12 +28,12 @@ window.addEventListener("beforeunload", event => {
 	}
 });
 
-for (var i = 0; i < 5; i++) { //$(".btn-group").length
-	[...document.querySelectorAll(".btn-group")[i].querySelectorAll("button")].forEach((target, j) => {
+[...document.querySelectorAll(".btn-group")].forEach((group, i) => {
+	[...group.querySelectorAll("button")].forEach((target, j) => {
 		target.setAttribute("i", i);
 		target.setAttribute("j", j);
 		target.addEventListener("mouseover", event => {
-			document.getElementById("help").innerHTML = helpArray[event.target.getAttribute("i")][event.target.getAttribute("j")];
+			document.getElementById("help").innerHTML = event.target.getAttribute("data-help");
 		});
 		target.addEventListener("mouseout", event => {
 			document.getElementById("help").innerHTML = "欢迎使用米米弹幕";
@@ -49,7 +42,7 @@ for (var i = 0; i < 5; i++) { //$(".btn-group").length
 			changeOption(event.target.getAttribute("i"), event.target.getAttribute("j"));
 		});
 	});
-}
+});
 
 function changeOption(i, j) {
 	i = parseInt(i);
