@@ -27,9 +27,9 @@ function filter(index) {
 	var ruleArray = document.getElementById("rule").value.split(" ");
 	var flag = true;
 	for (let rule of ruleArray) {
-		if (rule == "") continue;
+		if (rule === "") continue;
 		if (outputArray[index].content.split("|")[0].includes(rule)) {
-			if (options[4] == 0) {
+			if (options[4] === 0) {
 				flag = false;
 				break;
 			} else {
@@ -39,7 +39,7 @@ function filter(index) {
 			}
 		}
 	}
-	(flag && !outputArray[index].content.split("|")[0].split("").every(char => char == "*")) ? allow(index) : deny(index); //弹幕过滤器
+	(flag && !outputArray[index].content.split("|")[0].split("").every(char => char === "*")) ? allow(index) : deny(index); //弹幕过滤器
 }
 
 function clearAll() {

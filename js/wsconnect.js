@@ -21,8 +21,8 @@ function wsinit(server, channel) {
 			</td>
 		</tr>`);
 		outputArray.push(msg);
-		if (options[3] == 1) allow(index);
-		else if (options[3] == 2) deny(index);
+		if (options[3] === 1) allow(index);
+		else if (options[3] === 2) deny(index);
 		else filter(index); //弹幕过滤器
 	}
 
@@ -34,7 +34,7 @@ function wsinit(server, channel) {
 }
 
 function wsreload() {
-	//if (getChannel() == currentChannel) return;
+	//if (getChannel() === currentChannel) return;
 	currentChannel = getChannel();
 	if (ws) ws.close();
 	wsinit(server, currentChannel);

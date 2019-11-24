@@ -6,9 +6,9 @@ function createWindow() {
 
 	var fullScreen = true, onTop = "main-menu", backgroundImage = false;
 
-	if (options[0] == 1) fullScreen = false;
-	if (options[1] == 1) onTop = "floating";
-	if (options[2] == 1 && !fullScreen) backgroundImage = true;
+	if (options[0] === 1) fullScreen = false;
+	if (options[1] === 1) onTop = "floating";
+	if (options[2] === 1 && !fullScreen) backgroundImage = true;
 
 	if (fullScreen) {
 		let config = {

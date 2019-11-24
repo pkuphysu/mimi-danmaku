@@ -50,7 +50,7 @@ ipcRenderer.on("remove", (event, message) => {
 	var messageArray = JSON.parse(message).content.split("|");
 	for (let i in output) {
 		output[i].x -= output[i].speed;
-		if (output[i].text == messageArray[0]) {
+		if (output[i].text === messageArray[0]) {
 			output.splice(i, 1); //会删除所有相同弹幕
 		}
 	}

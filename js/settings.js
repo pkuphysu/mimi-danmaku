@@ -51,7 +51,7 @@ function changeOption(i, j) {
 	[...targets].forEach(target => target.classList.remove("active"));
 	targets[j].classList.add("active");
 	options[i] = j;
-	if (i == 0) {
+	if (i === 0) {
 		document.querySelectorAll(".row")[!j + 2].style.display = "none";
 		document.querySelectorAll(".row")[j + 2].style.display = "";
 	}
