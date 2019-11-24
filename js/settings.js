@@ -23,8 +23,7 @@ function getChannel() {
 
 window.addEventListener("beforeunload", event => {
 	if (mainWindow) {
-		event.returnValue = false;
-		alert("弹幕窗口开启时无法退出控制面板");
+		event.returnValue = false; // 弹幕窗口开启时无法退出控制面板
 	}
 });
 

@@ -48,12 +48,9 @@ ipcRenderer.on("danmaku", (event, message) => {
 
 ipcRenderer.on("remove", (event, message) => {
 	var messageArray = JSON.parse(message).content.split("|");
-	for (let i in output) {
-		output[i].x -= output[i].speed;
-		if (output[i].text === messageArray[0]) {
-			output.splice(i, 1); //会删除所有相同弹幕
-		}
-	}
+	output = output.filter(item => {
+		return item.text !== messageArray[0]; //会删除所有相同弹幕
+	});
 });
 
 var output = [];
@@ -103,14 +100,11 @@ function draw(obj) {
 
 setInterval(() => {
 	context.clearRect(0, 0, W, H);
-	for (let i in output) {
-		draw(output[i]);
-		output[i].x -= output[i].speed;
-		if (output[i].x < -context.measureText(output[i].text).width) {
-			output.splice(i, 1);
-			console.log(i);
-		}
-	}
+	output = output.filter(item => {
+		draw(item);
+		item.x -= item.speed;
+		return item.x >= -context.measureText(item.text).width;
+	});
 }, 20);
 </script>
 </body>

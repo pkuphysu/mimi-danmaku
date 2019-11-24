@@ -23,7 +23,7 @@ function wsinit(server, channel) {
 		outputArray.push(msg);
 		if (options[3] === 1) allow(index);
 		else if (options[3] === 2) deny(index);
-		else filter(index); //弹幕过滤器
+		else filter(index); // 弹幕过滤器
 	}
 
 	ws.onerror = function() {
