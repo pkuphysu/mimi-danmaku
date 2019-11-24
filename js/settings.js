@@ -1,17 +1,10 @@
-const fs = require("fs");
-var server = "ws://localhost:9000",
-	rule = "",
-	channel = "default";
+const config = require("./config.json");
+var server = config.server || "ws://localhost:9000",
+	rule = config.rule || "",
+	channel = config.channel || "default";
 
-fs.readFile("config.json", (err, data) => {
-	if (err) throw err;
-	var result = JSON.parse(data.toString());
-	server = result.server || server;
-	rule = result.rule || rule;
-	channel = result.channel || channel;
-	document.getElementById("rule").value = rule;
-	document.getElementById("channel").value = channel;
-});
+document.getElementById("rule").value = rule;
+document.getElementById("channel").value = channel;
 
 var mainWindow = null,
 	currentChannel = "default",
