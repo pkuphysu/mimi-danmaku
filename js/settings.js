@@ -1,6 +1,3 @@
-const electron = require("electron").remote;
-const ipcRender = require("electron").ipcRenderer;
-const { BrowserWindow } = electron;
 const fs = require("fs");
 var server = "ws://localhost:9000",
 	rule = "",

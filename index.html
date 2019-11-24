@@ -29,24 +29,24 @@ const { dialog } = require("electron").remote;
 function message(msg) {
 	dialog.showMessageBox({message : msg});
 }*/
-const ipcRender = require("electron").ipcRenderer;
+const { ipcRenderer } = require("electron");
 
-ipcRender.on("background", (event, message) => { // 监听父页面定义的端口
+ipcRenderer.on("background", (event, message) => { // 监听父页面定义的端口
 	canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1;";
 	if (message) canvas.style.cssText += ` background-image: url(${Bg});`;
 });
 
-ipcRender.on("setchannel", (event, message) => {
+ipcRenderer.on("setchannel", (event, message) => {
 	document.getElementById("channel").innerHTML = "频道：" + message;
 	document.getElementsByTagName("img")[0].src = "https://api.pkupi.com/qrcode/?margin=3&text=https://mimichat.herokuapp.com/danmaku/?channel=" + message;
 });
 
-ipcRender.on("danmaku", (event, message) => {
+ipcRenderer.on("danmaku", (event, message) => {
 	var messageArray = JSON.parse(message).content.split("|");
 	output.push(createDanmaku(...messageArray));
 });
 
-ipcRender.on("remove", (event, message) => {
+ipcRenderer.on("remove", (event, message) => {
 	var messageArray = JSON.parse(message).content.split("|");
 	for (let i in output) {
 		output[i].x -= output[i].speed;

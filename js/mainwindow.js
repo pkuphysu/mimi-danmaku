@@ -1,5 +1,5 @@
-const path = require("path");
-const url = require("url");
+const electron = require("electron").remote;
+const { BrowserWindow } = electron;
 
 // Create the browser window.
 function createWindow() {
@@ -62,11 +62,7 @@ function createWindow() {
 	}
 
 	// and load the index.html of the app.
-	mainWindow.loadURL(url.format({
-		pathname: path.join(__dirname, "index.html"),
-		protocol: "file:",
-		slashes : true
-	}));
+	mainWindow.loadURL(`file://${__dirname}/index.html`);
 
 	mainWindow.webContents.on("did-finish-load", () => {
 		mainWindow.webContents.send("background", backgroundImage);
