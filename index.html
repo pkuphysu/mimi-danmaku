@@ -6,12 +6,19 @@
 <style>
 body {
 	background-attachment: fixed;
-	text-align: center;
 	font-family: Verdana, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
 	min-width: 960px;
+	text-align: center;
 }
 span {
-	color: #FFFFFF;
+	color: white;
+}
+canvas {
+	background-size: cover;
+	left: 0;
+	position: fixed;
+	top: 0;
+	z-index: -1;
 }
 </style>
 </head>
@@ -32,8 +39,7 @@ function message(msg) {
 const { ipcRenderer } = require("electron");
 
 ipcRenderer.on("background", (event, message) => { // 监听父页面定义的端口
-	canvas.style.cssText = "position: fixed; top: 0; left: 0; background-size: cover; z-index: -1;";
-	if (message) canvas.style.cssText += ` background-image: url(${Bg});`;
+	if (message) canvas.style.cssText = `background-image: url(${Bg});`;
 });
 
 ipcRenderer.on("setchannel", (event, message) => {
@@ -49,7 +55,7 @@ ipcRenderer.on("danmaku", (event, message) => {
 ipcRenderer.on("remove", (event, message) => {
 	var messageArray = JSON.parse(message).content.split("|");
 	output = output.filter(item => {
-		return item.text !== messageArray[0]; //会删除所有相同弹幕
+		return item.text !== messageArray[0]; // 会删除所有相同弹幕
 	});
 });
 
@@ -57,7 +63,7 @@ var output = [];
 
 var canvas = document.createElement("canvas");
 var context = canvas.getContext("2d");
-document.getElementsByTagName("body")[0].appendChild(canvas);
+document.body.appendChild(canvas);
 
 var availableBg = ["sky.jpg", "bg1.jpg", "bg2.jpg"];
 var Bg = "images/" + availableBg[Math.floor(Math.random() * availableBg.length)];
