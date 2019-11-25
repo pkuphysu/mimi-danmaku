@@ -1,0 +1,18 @@
+{
+	"productName": "Mimi Danmaku",
+	"appId": "com.electron.${name}",
+	"copyright": "Copyright © 2019 ${author}",
+	"asar": true,
+	"artifactName": "${productName}-${version}.${ext}",
+	"compression": "maximum",
+	"win": {
+		"target": "nsis",
+		"legalTrademarks": "Mimi Personal"
+	},
+	"nsis": {
+		"allowToChangeInstallationDirectory": true,
+		"oneClick": false,
+		"menuCategory": true,
+		"allowElevation": false
+	}
+}

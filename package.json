@@ -4,7 +4,8 @@
 	"description": "Mimi Danmaku client for desktop platform.",
 	"main": "main.js",
 	"scripts": {
-		"start": "electron ."
+		"start": "electron .",
+		"build": "electron-builder"
 	},
 	"repository": {
 		"type": "git",
@@ -17,7 +18,8 @@
 	],
 	"author": "Mimi <stevenjoezhang@gmail.com> https://zhangshuqiao.org",
 	"license": "GPL-3.0-or-later",
-	"dependencies": {
-		"electron": "^6.1.5"
+	"devDependencies": {
+		"electron": "^6.1.5",
+		"electron-builder": "^21.2.0"
 	}
 }
