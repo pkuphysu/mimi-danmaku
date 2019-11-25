@@ -7,6 +7,19 @@
 		"start": "electron .",
 		"build": "electron-builder"
 	},
+	"build": {
+		"productName": "Mimi Danmaku",
+		"artifactName": "${productName}-${version}.${ext}",
+		"win": {
+			"legalTrademarks": "Mimi Personal"
+		},
+		"nsis": {
+			"allowToChangeInstallationDirectory": true,
+			"oneClick": false,
+			"menuCategory": true,
+			"allowElevation": false
+		}
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/stevenjoezhang/mimi-danmaku"
