@@ -17,7 +17,12 @@
 		"Client"
 	],
 	"author": "Mimi <stevenjoezhang@gmail.com> https://zhangshuqiao.org",
+	"readme": "https://github.com/stevenjoezhang/mimi-danmaku/blob/master/README.md",
 	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/stevenjoezhang/mimi-danmaku/issues"
+	},
+	"homepage": "https://github.com/stevenjoezhang/mimi-danmaku",
 	"devDependencies": {
 		"electron": "6.1.5",
 		"electron-builder": "21.2.0"
