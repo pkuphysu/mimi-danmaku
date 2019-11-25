@@ -19,7 +19,7 @@
 	"author": "Mimi <stevenjoezhang@gmail.com> https://zhangshuqiao.org",
 	"license": "GPL-3.0-or-later",
 	"devDependencies": {
-		"electron": "^6.1.5",
-		"electron-builder": "^21.2.0"
+		"electron": "6.1.5",
+		"electron-builder": "21.2.0"
 	}
 }
