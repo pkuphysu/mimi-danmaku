@@ -15,7 +15,6 @@ function createWindow() {
 			transparent   : true,
 			frame         : false,
 			toolbar       : false,
-			resizable     : true,
 			//alwaysOnTop   : true,
 			title         : "Mimi Danmaku",
 			webPreferences: {

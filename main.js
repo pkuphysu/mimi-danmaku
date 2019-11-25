@@ -14,7 +14,6 @@ function createPanel() {
 		minWidth      : 400,
 		height        : electron.screen.getPrimaryDisplay().workAreaSize.height,
 		minHeight     : 400,
-		//resizable     : false,
 		fullscreenable: false,
 		title         : "Mimi Danmaku Panel",
 		webPreferences: {
