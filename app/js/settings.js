@@ -1,7 +1,8 @@
-const config = require("./config.json");
-var server = config.server || "ws://localhost:9000",
-	rule = config.rule || "",
-	channel = config.channel || "default";
+var {
+	server = "ws://localhost:9000",
+	rule = "",
+	channel = "default"
+} = require("./config.json");
 
 document.getElementById("rule").value = rule;
 document.getElementById("channel").value = channel;
