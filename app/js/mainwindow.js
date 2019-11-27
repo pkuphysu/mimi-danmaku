@@ -1,4 +1,3 @@
-const electron = require("electron").remote;
 const { BrowserWindow } = electron;
 
 // Create the browser window.

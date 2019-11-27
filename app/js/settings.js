@@ -1,3 +1,5 @@
+const electron = require("electron").remote;
+
 var {
 	server = "ws://localhost:9000",
 	rule = "",
@@ -24,7 +26,13 @@ function getChannel() {
 
 window.addEventListener("beforeunload", event => {
 	if (mainWindow) {
-		event.returnValue = false; // 弹幕窗口开启时无法退出控制面板
+		const options = {
+			type   : "warning",
+			title  : "[Warning]",
+			message: "弹幕窗口处于开启状态，无法退出控制面板！"
+		};
+		electron.dialog.showMessageBox(electron.getCurrentWindow(), options);
+		event.returnValue = false;
 	}
 });
 
