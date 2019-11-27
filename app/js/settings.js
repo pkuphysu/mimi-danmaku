@@ -28,10 +28,8 @@ window.addEventListener("beforeunload", event => {
 	}
 });
 
-[...document.querySelectorAll(".btn-group")].forEach((group, i) => {
+[...document.querySelectorAll(":not(td) > .btn-group")].forEach((group, i) => {
 	[...group.querySelectorAll("button")].forEach((target, j) => {
-		target.setAttribute("i", i);
-		target.setAttribute("j", j);
 		target.addEventListener("mouseover", event => {
 			document.getElementById("help").innerHTML = event.target.getAttribute("data-help");
 		});
@@ -39,14 +37,12 @@ window.addEventListener("beforeunload", event => {
 			document.getElementById("help").innerHTML = "欢迎使用米米弹幕";
 		});
 		target.addEventListener("click", event => {
-			changeOption(event.target.getAttribute("i"), event.target.getAttribute("j"));
+			changeOption(i, j);
 		});
 	});
 });
 
 function changeOption(i, j) {
-	i = parseInt(i);
-	j = parseInt(j);
 	var targets = document.querySelectorAll(".btn-group")[i].querySelectorAll("button");
 	[...targets].forEach(target => target.classList.remove("active"));
 	targets[j].classList.add("active");
