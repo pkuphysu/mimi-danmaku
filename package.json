@@ -1,6 +1,6 @@
 {
 	"name": "mimi-danmaku",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "Mimi Danmaku client for desktop platform.",
 	"main": "app/main.js",
 	"scripts": {
@@ -37,7 +37,7 @@
 	},
 	"homepage": "https://github.com/stevenjoezhang/mimi-danmaku",
 	"devDependencies": {
-		"electron": "6.1.6",
+		"electron": "7.1.4",
 		"electron-builder": "21.2.0"
 	}
 }
