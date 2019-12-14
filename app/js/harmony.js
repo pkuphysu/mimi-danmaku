@@ -8,7 +8,7 @@ function allow(index, flag) {
 		target[1].innerHTML = "禁止";
 		target[1].classList.remove("disabled");
 	}
-	else if (flag) alert("请先开启弹幕窗口！");
+	else if (flag) message("请先开启弹幕窗口！");
 }
 
 function deny(index) {

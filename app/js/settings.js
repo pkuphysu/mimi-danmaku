@@ -1,4 +1,11 @@
 const electron = require("electron").remote;
+const { dialog } = electron;
+
+function message(msg) {
+	dialog.showMessageBox({
+		message: msg
+	});
+}
 
 var {
 	server = "ws://localhost:9000",
@@ -76,5 +83,5 @@ function panelSubmit(event) {
 }
 
 function about() {
-	alert(`Mimi Danmaku Ver ${require("../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
+	message(`Mimi Danmaku Ver ${require("../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }

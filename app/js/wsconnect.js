@@ -3,7 +3,7 @@ function wsinit(server, channel) {
 	ws = new WebSocket(server, headers = "danmaku" + channel);
 
 	ws.onopen = function() {
-		alert("系统消息：建立连接成功");
+		message("系统消息：建立连接成功");
 	}
 
 	ws.onmessage = function(event) {
@@ -27,7 +27,7 @@ function wsinit(server, channel) {
 	}
 
 	ws.onerror = function() {
-		alert("系统消息：连接失败，请手动关闭窗口并稍后再试");
+		message("系统消息：连接失败，请手动关闭窗口并稍后再试");
 	}
 
 	if (mainWindow) mainWindow.webContents.send("setchannel", channel);
