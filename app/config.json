@@ -1,4 +1,5 @@
 {
+	"client": "https://mimichat.herokuapp.com",
 	"server": "wss://mimichat.herokuapp.com",
 	"rule": "",
 	"channel": "default"
