@@ -59,7 +59,7 @@ function createWindow() {
 	}
 
 	// and load the index.html of the app.
-	mainWindow.loadURL(`file://${__dirname}/index.html`);
+	mainWindow.loadFile("app/index.html");
 
 	mainWindow.webContents.on("did-finish-load", () => {
 		mainWindow.webContents.send("background", backgroundImage);

@@ -21,7 +21,7 @@ function createPanel() {
 		}
 	});
 
-	panelWindow.loadURL(`file://${__dirname}/panel.html`);
+	panelWindow.loadFile("app/panel.html");
 
 	//panelWindow.setPosition(0, 0, true);
 
