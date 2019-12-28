@@ -1,6 +1,6 @@
 # Mimi Danmaku Client
 
-基于Node.js和Electron构建的Websocket弹幕客户端。  
+基于 Node.js 和 Electron 构建的 Websocket 弹幕客户端。服务端见 [mimi-chat](https://github.com/stevenjoezhang/mimi-chat)。  
 A Websocket danmaku client based on Node.js and Electron.
 
 ![](screenshot.png)
@@ -23,6 +23,7 @@ npm start
 
 ## Build
 
+Use the following command to package it as a desktop app:
 ```bash
 npm run build
 ```
