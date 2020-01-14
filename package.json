@@ -37,7 +37,7 @@
 	},
 	"homepage": "https://github.com/stevenjoezhang/mimi-danmaku",
 	"devDependencies": {
-		"electron": "7.1.8",
+		"electron": "7.1.9",
 		"electron-builder": "22.2.0"
 	}
 }
