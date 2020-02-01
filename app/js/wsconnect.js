@@ -8,11 +8,16 @@ function wsinit(server, channel) {
 
 	ws.onmessage = function(event) {
 		var msg = JSON.parse(event.data);
-		if (msg.type != "user") return;
-		var messageArray = msg.content.split("|");
+		if (!msg.meta) return;
+		if (msg.from !== "user") return;
+		var message = {
+			content: msg.content,
+			size: msg.meta.size,
+			color: msg.meta.color
+		};
 		var index = outputArray.length;
 		document.querySelector("tbody").insertAdjacentHTML("afterbegin", `<tr id="${index}">
-			<td>${messageArray[0]}</td>
+			<td>${msg.content}</td>
 			<td>
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-success" onclick="allow(${index}, true)">通过</button>
@@ -20,7 +25,7 @@ function wsinit(server, channel) {
 				</div>
 			</td>
 		</tr>`);
-		outputArray.push(msg);
+		outputArray.push(message);
 		if (options[3] === 1) allow(index);
 		else if (options[3] === 2) deny(index);
 		else filter(index); // 弹幕过滤器

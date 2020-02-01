@@ -28,18 +28,17 @@ function filter(index) {
 	var flag = true;
 	for (let rule of ruleArray) {
 		if (rule === "") continue;
-		if (outputArray[index].content.split("|")[0].includes(rule)) {
+		if (outputArray[index].content.includes(rule)) {
 			if (options[4] === 0) {
 				flag = false;
 				break;
 			} else {
-				var tmp = outputArray[index].content.split("|");
-				tmp[0] = tmp[0].split(rule).join("*");
-				outputArray[index].content = tmp.join("|");
+				var tmp = outputArray[index];
+				tmp.content = tmp.content.split(rule).join("*");
 			}
 		}
 	}
-	(flag && !outputArray[index].content.split("|")[0].split("").every(char => char === "*")) ? allow(index) : deny(index); //弹幕过滤器
+	(flag && !outputArray[index].content.split("").every(char => char === "*")) ? allow(index) : deny(index); //弹幕过滤器
 }
 
 function clearAll() {
