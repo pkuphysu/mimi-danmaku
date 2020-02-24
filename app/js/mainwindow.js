@@ -24,17 +24,19 @@ function createWindow() {
 			return display.bounds.x !== 0 || display.bounds.y !== 0;
 		});
 		if (externalDisplay && confirm("是否要在外部屏幕打开弹幕窗口？")) {
-			mainWindow = new BrowserWindow(Object.assign(config, {
+			mainWindow = new BrowserWindow({
+				...config,
 				x     : externalDisplay.bounds.x,
 				y     : externalDisplay.bounds.y,
 				width : externalDisplay.workAreaSize.width,
 				height: externalDisplay.workAreaSize.height
-			}));
+			});
 		} else {
-			mainWindow = new BrowserWindow(Object.assign(config, {
+			mainWindow = new BrowserWindow({
+				...config,
 				width : electron.screen.getPrimaryDisplay().workAreaSize.width,
 				height: electron.screen.getPrimaryDisplay().workAreaSize.height
-			}));
+			});
 		}
 
 		mainWindow.setIgnoreMouseEvents(true);
