@@ -39,5 +39,8 @@
 	"devDependencies": {
 		"electron": "8.0.2",
 		"electron-builder": "22.3.2"
+	},
+	"dependencies": {
+		"bootstrap": "^3.4.1"
 	}
 }
