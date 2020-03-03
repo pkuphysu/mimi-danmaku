@@ -1,9 +1,9 @@
 const electron = require("electron").remote;
 const { dialog } = electron;
 
-function message(msg) {
+function message(message) {
 	dialog.showMessageBox({
-		message: msg
+		message
 	});
 }
 
