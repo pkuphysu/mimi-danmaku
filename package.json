@@ -41,7 +41,7 @@
 		"electron-builder": "22.4.0"
 	},
 	"dependencies": {
-		"bootstrap": "^3.4.1",
+		"bootstrap": "^4.0.0",
 		"qrcode": "^1.4.4"
 	}
 }
