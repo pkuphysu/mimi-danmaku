@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Mimi Danmaku</title>
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 <style>
 body {
 	background-attachment: fixed;
@@ -24,15 +23,16 @@ canvas {
 </style>
 </head>
 <body>
-	<div style="position: fixed; bottom: 20px; left: 20px; z-index: 100; opacity: 0.9;">
-		<img src="images/galaxymimi.svg" style="width: 200px; border-radius: 20px;">
-		<br>
-		<span>Mimi弹幕</span>
-		<br>
-		<span id="channel"></span>
-	</div>
+<div style="position: fixed; bottom: 20px; left: 20px; z-index: 100; opacity: 0.9;">
+	<img src="images/galaxymimi.svg" style="width: 200px; border-radius: 20px;">
+	<br>
+	<span>Mimi弹幕</span>
+	<br>
+	<span id="channel"></span>
+</div>
 <script>
 const { ipcRenderer } = require("electron");
+const QRCode = require("qrcode");
 
 var {
 	client = "http://localhost:9000"
@@ -63,35 +63,30 @@ ipcRenderer.on("remove", (event, message) => {
 
 var output = [];
 
-var canvas = document.createElement("canvas");
-var context = canvas.getContext("2d");
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
 document.body.appendChild(canvas);
 
-var availableBg = ["sky.jpg", "bg1.jpg", "bg2.jpg"];
-var Bg = "images/" + availableBg[Math.floor(Math.random() * availableBg.length)];
+const availableBg = ["sky.jpg", "bg1.jpg", "bg2.jpg"];
+const Bg = "images/" + availableBg[Math.floor(Math.random() * availableBg.length)];
 
-var W = window.innerWidth;
-var H = window.innerHeight;
-canvas.width = W;
-canvas.height = H;
-var fontSize = H / 10;
+const availableColor = ["orange", "red", "blue", "purple", "green", "white"];
 
-var availableColor = ["orange", "red", "blue", "purple", "green", "white"];
+function resize() {
+	canvas.width = window.innerWidth
+	canvas.height = window.innerHeight;
+};
 
-window.onresize = function() {
-	console.warn("WTF?");
-  	W = window.innerWidth;
-  	H = window.innerHeight;
-  	canvas.width = W;
-  	canvas.height = H;
-  	fontSize = H / 10;
-}
+window.onresize = resize;
+
+resize();
 
 function createDanmaku(text, size, color) {
+	let fontSize = canvas.height / 10;
 	var danmaku = {
-		speed: (W / 500) * (Math.random() * 0.5 + 0.75),
-		x    : W,
-		y    : Math.random() * H * 4 / 5 + fontSize,
+		speed: (canvas.width / 500) * (Math.random() * 0.5 + 0.75),
+		x    : canvas.width,
+		y    : Math.random() * canvas.height * 4 / 5 + fontSize,
 		text,
 		size : fontSize * size
 	};
@@ -107,7 +102,7 @@ function draw(obj) {
 }
 
 setInterval(() => {
-	context.clearRect(0, 0, W, H);
+	context.clearRect(0, 0, canvas.width, canvas.height);
 	output = output.filter(item => {
 		draw(item);
 		item.x -= item.speed;
