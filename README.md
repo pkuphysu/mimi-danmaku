@@ -31,6 +31,7 @@ npm run build
 ## Credits
 
 * [Mimi](https://zhangshuqiao.org) Developer of this project.
+* Inspired by https://github.com/zsxsoft/danmu-client
 
 ## License
 

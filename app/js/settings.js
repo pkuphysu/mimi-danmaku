@@ -43,10 +43,10 @@ window.addEventListener("beforeunload", event => {
 	}
 });
 
-[...document.querySelectorAll(":not(td) > .btn-group")].forEach((group, i) => {
-	[...group.querySelectorAll("button")].forEach((target, j) => {
+document.querySelectorAll(":not(td) > .btn-group").forEach((group, i) => {
+	group.querySelectorAll("button").forEach((target, j) => {
 		target.addEventListener("mouseover", event => {
-			document.getElementById("help").innerHTML = event.target.getAttribute("data-help");
+			document.getElementById("help").innerHTML = event.target.dataset.help;
 		});
 		target.addEventListener("mouseout", event => {
 			document.getElementById("help").innerHTML = "欢迎使用米米弹幕";
@@ -59,7 +59,7 @@ window.addEventListener("beforeunload", event => {
 
 function changeOption(i, j) {
 	var targets = document.querySelectorAll(".btn-group")[i].querySelectorAll("button");
-	[...targets].forEach(target => target.classList.remove("active"));
+	targets.forEach(target => target.classList.remove("active"));
 	targets[j].classList.add("active");
 	options[i] = j;
 	if (i === 0) {
