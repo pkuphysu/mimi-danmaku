@@ -10,8 +10,8 @@ let panelWindow;
 function createPanel() {
 
 	panelWindow = new BrowserWindow({
-		width         : 400,
-		minWidth      : 400,
+		width         : 500,
+		minWidth      : 500,
 		height        : electron.screen.getPrimaryDisplay().workAreaSize.height,
 		minHeight     : 400,
 		fullscreenable: false,

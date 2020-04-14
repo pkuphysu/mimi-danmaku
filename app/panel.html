@@ -4,10 +4,16 @@
 <meta charset="UTF-8">
 <title>Mimi Danmaku Panel</title>
 <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<style>
+.container {
+	margin: 20px;
+	max-width: calc(100% - 40px);
+}
+</style>
 </head>
 <body>
-<div class="container" style="margin: 0 20px 20px 20px;">
-	<div class="row">
+<div class="container">
+	<div class="row" style="display: block;">
 		<h1>Mimi Danmaku</h1>
 		<p id="help">欢迎使用米米弹幕</p>
 	</div>
@@ -16,8 +22,8 @@
 		<div class="form-group">
 		显示模式
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active" data-help="弹幕窗口将在全屏幕上浮动显示">固定(全屏幕)</button>
-				<button type="button" class="btn btn-default" data-help="弹幕窗口将以窗口形式显示">窗口(可移动)</button>
+				<button type="button" class="btn btn-secondary active" data-help="弹幕窗口将在全屏幕上浮动显示">固定(全屏幕)</button>
+				<button type="button" class="btn btn-secondary" data-help="弹幕窗口将以窗口形式显示">窗口(可移动)</button>
 			</div>
 		</div>
 	</div>
@@ -26,8 +32,8 @@
 		<div class="form-group">
 		窗口叠放
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active" data-help="窗口将始终处于屏幕顶层，即使存在其他全屏应用">始终置顶</button>
-				<button type="button" class="btn btn-default" data-help="使用其他全屏应用时，弹幕窗口可能不会置顶">优先置顶</button>
+				<button type="button" class="btn btn-secondary active" data-help="窗口将始终处于屏幕顶层，即使存在其他全屏应用">始终置顶</button>
+				<button type="button" class="btn btn-secondary" data-help="使用其他全屏应用时，弹幕窗口可能不会置顶">优先置顶</button>
 			</div>
 		</div>
 	</div>
@@ -36,8 +42,8 @@
 		<div class="form-group">
 		背景图片
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active" data-help="弹幕窗口背景透明">透明背景</button>
-				<button type="button" class="btn btn-default" data-help="弹幕窗口使用系统预设背景">默认图片</button>
+				<button type="button" class="btn btn-secondary active" data-help="弹幕窗口背景透明">透明背景</button>
+				<button type="button" class="btn btn-secondary" data-help="弹幕窗口使用系统预设背景">默认图片</button>
 			</div>
 		</div>
 	</div>
@@ -46,9 +52,9 @@
 		<div class="form-group">
 		弹幕过滤
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active" data-help="弹幕按照规则自动过滤">自动过滤</button>
-				<button type="button" class="btn btn-default" data-help="默认允许所有弹幕">默认允许</button>
-				<button type="button" class="btn btn-default" data-help="默认禁止所有弹幕">默认禁止</button>
+				<button type="button" class="btn btn-secondary active" data-help="弹幕按照规则自动过滤">自动过滤</button>
+				<button type="button" class="btn btn-secondary" data-help="默认允许所有弹幕">默认允许</button>
+				<button type="button" class="btn btn-secondary" data-help="默认禁止所有弹幕">默认禁止</button>
 			</div>
 		</div>
 	</div>
@@ -57,39 +63,37 @@
 		<div class="form-group">
 		过滤模式
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default active" data-help="含有屏蔽词的弹幕直接禁止">直接禁止</button>
-				<button type="button" class="btn btn-default" data-help="替换屏蔽词为*">替换内容</button>
+				<button type="button" class="btn btn-secondary active" data-help="含有屏蔽词的弹幕直接禁止">直接禁止</button>
+				<button type="button" class="btn btn-secondary" data-help="替换屏蔽词为*">替换内容</button>
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="form-group">
-		过滤规则<span class="text-muted">（屏蔽词，使用空格分隔，不支持正则）</span>
-			<textarea class="form-control" rows="3" id="rule" style="resize: none;"></textarea>
-		</div>
+	<div class="form-group row">
+	过滤规则<span class="text-muted">（屏蔽词，使用空格分隔，不支持正则）</span>
+		<textarea class="form-control" rows="3" id="rule" style="resize: none;"></textarea>
+	</div>
+
+	<div class="form-group row">
+	弹幕频道
+		<input type="text" class="form-control" placeholder="default" id="channel">
 	</div>
 
 	<div class="row">
 		<div class="form-group">
-		弹幕频道
-			<input type="text" class="form-control" placeholder="default" id="channel">
+			<button class="btn btn-success" onclick="wsreload()">连接弹幕频道</button>
+			<button class="btn btn-primary" onclick="panelSubmit()" id="submit">开启弹幕窗口</button>
+			<button class="btn btn-secondary" onclick="about()">关于</button>
 		</div>
-	</div>
-
-	<div class="row">
-		<button class="btn btn-success" onclick="wsreload()">连接弹幕频道</button>
-		<button class="btn btn-primary" onclick="panelSubmit()" id="submit">开启弹幕窗口</button>
-		<button class="btn btn-default" onclick="about()">关于</button>
-	</div>
-	<div class="row" style="margin-top: 10px;">
-		<button class="btn btn-primary" onclick="clearAll()">清空弹幕列表</button>
-		<button class="btn btn-danger" onclick="denyAll()" id="submit">撤回所有弹幕</button>
-		<table class="table table-striped" style="table-layout: fixed; margin-top: 10px;">
+		<div class="form-group">
+			<button class="btn btn-primary" onclick="clearAll()">清空弹幕列表</button>
+			<button class="btn btn-danger" onclick="denyAll()" id="submit">撤回所有弹幕</button>
+		</div>
+		<table class="table table-striped" style="table-layout: fixed;">
 			<thead>
 				<tr>
 					<th>弹幕内容</th>
-					<th style="width: 140px;">审核</th>
+					<th style="width: 160px;">审核</th>
 				</tr>
 			</thead>
 			<tbody>
