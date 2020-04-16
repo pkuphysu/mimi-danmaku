@@ -1,6 +1,6 @@
 {
-	"client": "https://mimichat.herokuapp.com",
-	"server": "wss://mimichat.herokuapp.com",
+	"client": "https://chat.zsq.im",
+	"server": "wss://chat.zsq.im",
 	"rule": "",
 	"channel": "default"
 }
