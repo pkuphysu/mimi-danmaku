@@ -90,7 +90,7 @@ function createDanmaku(text, size, color) {
 		text,
 		size : fontSize * size
 	};
-	var reg = new RegExp("^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$");
+	var reg = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/;
 	danmaku.color = reg.test(color) ? color : availableColor[Math.floor(Math.random() * availableColor.length)];
 	return danmaku;
 }

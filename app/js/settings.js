@@ -25,9 +25,7 @@ var mainWindow = null,
 var options = [0, 0, 0, 0, 0];
 
 function getChannel() {
-	var reg = new RegExp(/[\x00-\xff]+/g);
-	var channel = document.getElementById("channel").value || "default";
-	if (!reg.test(channel)) channel = "default";
+	let channel = document.getElementById("channel").value.replace(/\W/g, "") || "default";
 	return channel;
 }
 
