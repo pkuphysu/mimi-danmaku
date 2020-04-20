@@ -1,4 +1,4 @@
-const { BrowserWindow } = electron;
+const { BrowserWindow, screen } = electron;
 
 // Create the browser window.
 function createWindow() {
@@ -19,7 +19,7 @@ function createWindow() {
 				nodeIntegration: true
 			}
 		};
-		let displays = electron.screen.getAllDisplays();
+		let displays = screen.getAllDisplays();
 		let externalDisplay = displays.find(display => {
 			return display.bounds.x !== 0 || display.bounds.y !== 0;
 		});
@@ -34,8 +34,8 @@ function createWindow() {
 		} else {
 			mainWindow = new BrowserWindow({
 				...config,
-				width : electron.screen.getPrimaryDisplay().workAreaSize.width,
-				height: electron.screen.getPrimaryDisplay().workAreaSize.height
+				width : screen.getPrimaryDisplay().workAreaSize.width,
+				height: screen.getPrimaryDisplay().workAreaSize.height
 			});
 		}
 
