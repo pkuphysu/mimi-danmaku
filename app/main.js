@@ -1,7 +1,9 @@
 const electron = require("electron");
 // Module to control application life.
 // Module to create native browser window.
-const { app, BrowserWindow } = electron;
+const { app, BrowserWindow, TouchBar } = electron;
+
+const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -23,6 +25,19 @@ function createPanel() {
 	});
 
 	panelWindow.loadFile("app/panel.html");
+
+	const touchBar = new TouchBar({
+		items: [
+			new TouchBarButton({
+				label: "撤回所有弹幕",
+				backgroundColor: "#c82333",
+				click: () => {
+					panelWindow.webContents.send("denyall");
+				}
+			})
+		]
+	});
+	panelWindow.setTouchBar(touchBar);
 
 	//panelWindow.setPosition(0, 0, true);
 
@@ -53,14 +68,14 @@ app.on("window-all-closed", function() {
 });
 
 app.on("activate", function() {
-	// On OS X it"s common to re-create a window in the app when the
+	// On OS X it's common to re-create a window in the app when the
 	// dock icon is clicked and there are no other windows open.
 	if (panelWindow === null) {
 		createPanel();
 	}
 });
 
-// In this file you can include the rest of your app"s specific main process
+// In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = true;

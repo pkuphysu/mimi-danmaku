@@ -5,7 +5,6 @@ const mainWindow = require('./mainwindow');
 
 const {
 	server = "ws://localhost:9000",
-	rule = "",
 	channel = "default"
 } = require("../config.json");
 
@@ -53,4 +52,4 @@ class WebSocketController {
 	}
 }
 
-module.exports = WebSocketController;
+module.exports = new WebSocketController();
