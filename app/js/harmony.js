@@ -1,48 +1,85 @@
-function allow(index, flag) {
-	const target = document.getElementById(index).querySelectorAll("button");
-	if (target[0].classList.contains("disabled")) return;
-	if (mainWindow) {
-		mainWindow.webContents.send("danmaku", JSON.stringify(outputArray[index]));
-		target[0].innerHTML = "已通过";
-		target[0].classList.add("disabled");
-		target[1].innerHTML = "禁止";
-		target[1].classList.remove("disabled");
-	}
-	else if (flag) message("请先开启弹幕窗口！");
-}
+const { dialog } = require("electron").remote;
+const mainWindow = require('./mainwindow');
+const { options } = require('./settings');
 
-function deny(index) {
-	const target = document.getElementById(index).querySelectorAll("button");
-	if (target[1].classList.contains("disabled")) return;
-	target[0].innerHTML = "通过";
-	target[0].classList.remove("disabled");
-	target[1].innerHTML = "已禁止";
-	target[1].classList.add("disabled");
-	if (mainWindow) {
-		mainWindow.webContents.send("remove", JSON.stringify(outputArray[index]));
+class DanmakuController {
+	constructor() {
+		this.outputArray = [];
 	}
-}
 
-function filter(index) {
-	const ruleArray = document.getElementById("rule").value.split(" ");
-	let flag = true;
-	for (let rule of ruleArray) {
-		if (rule === "") continue;
-		if (outputArray[index].content.includes(rule)) {
-			if (options[4] === 0) {
-				flag = false;
-				break;
-			} else {
-				const tmp = outputArray[index];
-				tmp.content = tmp.content.split(rule).join("*");
-			}
+	allow(index, flag) {
+		const target = document.getElementById(index).querySelectorAll("button");
+		if (target[0].classList.contains("disabled")) return;
+		if (mainWindow.window) {
+			mainWindow.send("danmaku", JSON.stringify(this.outputArray[index]));
+			target[0].innerHTML = "已通过";
+			target[0].classList.add("disabled");
+			target[1].innerHTML = "禁止";
+			target[1].classList.remove("disabled");
+		}
+		else if (flag) dialog.showMessageBox({
+			message: "请先开启弹幕窗口！"
+		});
+	}
+
+	deny(index) {
+		const target = document.getElementById(index).querySelectorAll("button");
+		if (target[1].classList.contains("disabled")) return;
+		target[0].innerHTML = "通过";
+		target[0].classList.remove("disabled");
+		target[1].innerHTML = "已禁止";
+		target[1].classList.add("disabled");
+		if (mainWindow.window) {
+			mainWindow.send("remove", JSON.stringify(this.outputArray[index]));
 		}
 	}
-	(flag && !outputArray[index].content.split("").every(char => char === "*")) ? allow(index) : deny(index); //弹幕过滤器
-}
 
-function clearAll() {
-	document.querySelector("tbody").innerHTML = `<tr>
+	insert(msg) {
+		const message = {
+			content: msg.content,
+			size: msg.meta.size,
+			color: msg.meta.color
+		};
+		const index = this.outputArray.length;
+		const element = document.createElement("tr");
+		element.id = index;
+		element.innerHTML = `<td>${msg.content}</td>
+			<td>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-success">通过</button>
+					<button type="button" class="btn btn-danger">禁止</button>
+				</div>
+			</td>`;
+		document.querySelector("tbody").prepend(element);
+		// Bind this
+		element.querySelector('.btn-success').addEventListener("click", () => this.allow(index, true));
+		element.querySelector('.btn-danger').addEventListener("click", () => this.deny(index));
+		this.outputArray.push(message);
+		if (options[3] === 1) this.allow(index);
+		else if (options[3] === 2) this.deny(index);
+		else this.filter(index); // 弹幕过滤器
+	}
+
+	filter(index) {
+		const ruleArray = document.getElementById("rule").value.split(" ");
+		let flag = true;
+		for (let rule of ruleArray) {
+			if (rule === "") continue;
+			if (this.outputArray[index].content.includes(rule)) {
+				if (options[4] === 0) {
+					flag = false;
+					break;
+				} else {
+					const tmp = this.outputArray[index];
+					tmp.content = tmp.content.split(rule).join("*");
+				}
+			}
+		}
+		(flag && !this.outputArray[index].content.split("").every(char => char === "*")) ? this.allow(index) : this.deny(index); //弹幕过滤器
+	}
+
+	clearAll() {
+		document.querySelector("tbody").innerHTML = `<tr>
 		<td>欢迎使用米米弹幕</td>
 		<td>
 			<div class="btn-group" role="group">
@@ -51,8 +88,11 @@ function clearAll() {
 			</div>
 		</td>
 	</tr>`;
+	}
+
+	denyAll() {
+		for (let i in this.outputArray) this.deny(i);
+	}
 }
 
-function denyAll() {
-	for (let i in outputArray) deny(i);
-}
+module.exports = new DanmakuController();

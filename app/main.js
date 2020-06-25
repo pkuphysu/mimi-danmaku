@@ -17,7 +17,8 @@ function createPanel() {
 		fullscreenable: false,
 		title         : "Mimi Danmaku Panel",
 		webPreferences: {
-			nodeIntegration: true
+			nodeIntegration: true,
+			enableRemoteModule: true
 		}
 	});
 

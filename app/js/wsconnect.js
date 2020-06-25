@@ -1,50 +1,56 @@
-let ws = null;
-function wsinit(server, channel) {
-	ws = new WebSocket(server, headers = "danmaku" + channel);
+const { dialog } = require("electron").remote;
+const danmakuController = require('./harmony');
+const { getChannel } = require("./utils");
+const mainWindow = require('./mainwindow');
 
-	ws.onopen = function() {
-		message("系统消息：建立连接成功");
+const {
+	server = "ws://localhost:9000",
+	rule = "",
+	channel = "default"
+} = require("../config.json");
+
+class WebSocketController {
+	constructor() {
+		this.ws = null;
+		this.currentChannel = "default"
+		this.harmony = danmakuController;
+
+		setInterval(() => {
+			if (this.ws) this.ws.send("ping");
+		}, 30000);
 	}
 
-	ws.onmessage = function(event) {
-		const msg = JSON.parse(event.data);
-		if (!msg.meta) return;
-		if (msg.from !== "user") return;
-		const message = {
-			content: msg.content,
-			size: msg.meta.size,
-			color: msg.meta.color
-		};
-		const index = outputArray.length;
-		document.querySelector("tbody").insertAdjacentHTML("afterbegin", `<tr id="${index}">
-			<td>${msg.content}</td>
-			<td>
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-success" onclick="allow(${index}, true)">通过</button>
-					<button type="button" class="btn btn-danger" onclick="deny(${index})">禁止</button>
-				</div>
-			</td>
-		</tr>`);
-		outputArray.push(message);
-		if (options[3] === 1) allow(index);
-		else if (options[3] === 2) deny(index);
-		else filter(index); // 弹幕过滤器
+	wsinit(server, channel) {
+		this.ws = new WebSocket(server, "danmaku" + channel);
+
+		this.ws.onopen = function() {
+			dialog.showMessageBox({
+				message: "系统消息：建立连接成功"
+			});
+		}
+		// Bind this
+		this.ws.onmessage = event => {
+			const msg = JSON.parse(event.data);
+			if (!msg.meta) return;
+			if (msg.from !== "user") return;
+			this.harmony.insert(msg);
+		}
+
+		this.ws.onerror = function() {
+			dialog.showMessageBox({
+				message: "系统消息：连接失败，请手动关闭窗口并稍后再试"
+			});
+		}
+
+		mainWindow.send("setchannel", channel);
 	}
 
-	ws.onerror = function() {
-		message("系统消息：连接失败，请手动关闭窗口并稍后再试");
+	wsreload() {
+		//if (getChannel() === currentChannel) return;
+		this.currentChannel = getChannel();
+		if (this.ws) this.ws.close();
+		this.wsinit(server, this.currentChannel);
 	}
-
-	if (mainWindow) mainWindow.webContents.send("setchannel", channel);
 }
 
-function wsreload() {
-	//if (getChannel() === currentChannel) return;
-	currentChannel = getChannel();
-	if (ws) ws.close();
-	wsinit(server, currentChannel);
-}
-
-setInterval(() => {
-	if (ws) ws.send("ping");
-}, 30000);
+module.exports = WebSocketController;

@@ -1,32 +1,21 @@
 const electron = require("electron").remote;
 const { dialog } = electron;
-
-function message(message) {
-	dialog.showMessageBox({
-		message
-	});
-}
+const mainWindow = require('./mainwindow');
 
 const {
 	server = "ws://localhost:9000",
 	rule = "",
 	channel = "default"
-} = require("./config.json");
+} = require("../config.json");
 
 document.getElementById("rule").value = rule;
 document.getElementById("channel").value = channel;
 
-let mainWindow = null, currentChannel = "default", outputArray = [], allowArray = [], denyArray = [];
-
 const options = [0, 0, 0, 0, 0];
 
-function getChannel() {
-	let channel = document.getElementById("channel").value.replace(/\W/g, "") || "default";
-	return channel;
-}
 
 window.addEventListener("beforeunload", event => {
-	if (mainWindow) {
+	if (mainWindow.window) {
 		const options = {
 			type   : "warning",
 			title  : "[Warning]",
@@ -62,20 +51,28 @@ function changeOption(i, j) {
 	}
 }
 
-function panelSubmit(event) {
-	if (mainWindow) {
+function panelSubmit() {
+	if (mainWindow.window) {
 		document.getElementById("submit").innerHTML = "开启弹幕窗口";
 		document.getElementById("submit").classList.remove("btn-danger");
 		document.getElementById("submit").classList.add("btn-primary");
-		closeWindow();
+		mainWindow.closeWindow();
 	} else {
 		document.getElementById("submit").innerHTML = "关闭弹幕窗口";
 		document.getElementById("submit").classList.remove("btn-primary");
 		document.getElementById("submit").classList.add("btn-danger");
-		createWindow();
+		mainWindow.createWindow(options);
 	}
 }
 
 function about() {
-	message(`Mimi Danmaku Ver ${require("../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
+	dialog.showMessageBox({
+		message: `Mimi Danmaku Ver ${require("../../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`
+	});
+}
+
+module.exports = {
+	panelSubmit,
+	about,
+	options
 }

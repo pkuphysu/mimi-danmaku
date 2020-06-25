@@ -81,13 +81,13 @@
 
 	<div class="row">
 		<div class="form-group">
-			<button class="btn btn-success" onclick="wsreload()">连接弹幕频道</button>
-			<button class="btn btn-primary" onclick="panelSubmit()" id="submit">开启弹幕窗口</button>
-			<button class="btn btn-secondary" onclick="about()">关于</button>
+			<button class="btn btn-success" onclick="MimiDanmaku.ws.wsreload()">连接弹幕频道</button>
+			<button class="btn btn-primary" onclick="MimiDanmaku.panelSubmit()" id="submit">开启弹幕窗口</button>
+			<button class="btn btn-secondary" onclick="MimiDanmaku.about()">关于</button>
 		</div>
 		<div class="form-group">
-			<button class="btn btn-primary" onclick="clearAll()">清空弹幕列表</button>
-			<button class="btn btn-danger" onclick="denyAll()" id="submit">撤回所有弹幕</button>
+			<button class="btn btn-primary" onclick="MimiDanmaku.danmaku.clearAll()">清空弹幕列表</button>
+			<button class="btn btn-danger" onclick="MimiDanmaku.danmaku.denyAll()" id="submit">撤回所有弹幕</button>
 		</div>
 		<table class="table table-striped" style="table-layout: fixed;">
 			<thead>
@@ -111,9 +111,6 @@
 	</div>
 </div>
 
-<script src="js/settings.js"></script>
-<script src="js/mainwindow.js"></script>
-<script src="js/wsconnect.js"></script>
-<script src="js/harmony.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
