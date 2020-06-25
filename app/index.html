@@ -34,17 +34,13 @@ canvas {
 const { ipcRenderer } = require("electron");
 const QRCode = require("qrcode");
 
-var {
-	client = "http://localhost:9000"
-} = require("./config.json");
-
 ipcRenderer.on("background", (event, message) => { // 监听父页面定义的端口
 	if (message) canvas.style.cssText = `background-image: url(${Bg});`;
 });
 
 ipcRenderer.on("setchannel", (event, message) => {
-	document.getElementById("channel").innerHTML = "频道：" + message;
-	QRCode.toDataURL(`${client}/danmaku/?channel=${message}`, (err, url) => {
+	document.getElementById("channel").innerHTML = "频道：" + message.channel;
+	QRCode.toDataURL(`${message.client}/danmaku/?channel=${message.channel}`, (err, url) => {
 		document.getElementsByTagName("img")[0].src = url;
 	});
 });

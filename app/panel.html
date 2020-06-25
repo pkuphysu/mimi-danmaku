@@ -75,6 +75,16 @@
 	</div>
 
 	<div class="form-group row">
+	客户端
+		<input type="text" class="form-control" placeholder="" id="client">
+	</div>
+
+	<div class="form-group row">
+	服务端
+		<input type="text" class="form-control" placeholder="" id="server">
+	</div>
+
+	<div class="form-group row">
 	弹幕频道
 		<input type="text" class="form-control" placeholder="default" id="channel">
 	</div>
@@ -111,6 +121,23 @@
 	</div>
 </div>
 
-<script src="js/index.js"></script>
+<script>
+const { ipcRenderer } = require("electron");
+const webSocketController = require("./js/wsconnect");
+const danmakuController = require("./js/harmony");
+const { panelSubmit } = require("./js/settings");
+const { about } = require("./js/utils");
+
+const MimiDanmaku = {
+    ws: webSocketController,
+    danmaku: danmakuController,
+    panelSubmit,
+    about
+};
+
+ipcRenderer.on("denyall", () => {
+    MimiDanmaku.danmaku.denyAll();
+});
+</script>
 </body>
 </html>

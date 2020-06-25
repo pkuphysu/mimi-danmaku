@@ -1,17 +1,11 @@
 const { dialog } = require("electron").remote;
 const danmakuController = require('./harmony');
-const { getChannel } = require("./utils");
+const { config } = require("./utils");
 const mainWindow = require('./mainwindow');
-
-const {
-	server = "ws://localhost:9000",
-	channel = "default"
-} = require("../config.json");
 
 class WebSocketController {
 	constructor() {
 		this.ws = null;
-		this.currentChannel = "default"
 		this.harmony = danmakuController;
 
 		setInterval(() => {
@@ -19,8 +13,8 @@ class WebSocketController {
 		}, 30000);
 	}
 
-	wsinit(server, channel) {
-		this.ws = new WebSocket(server, "danmaku" + channel);
+	wsinit() {
+		this.ws = new WebSocket(config.server, "danmaku" + config.channel);
 
 		this.ws.onopen = function() {
 			dialog.showMessageBox({
@@ -41,14 +35,13 @@ class WebSocketController {
 			});
 		}
 
-		mainWindow.send("setchannel", channel);
+		mainWindow.send("setchannel", config);
 	}
 
 	wsreload() {
 		//if (getChannel() === currentChannel) return;
-		this.currentChannel = getChannel();
 		if (this.ws) this.ws.close();
-		this.wsinit(server, this.currentChannel);
+		this.wsinit();
 	}
 }
 

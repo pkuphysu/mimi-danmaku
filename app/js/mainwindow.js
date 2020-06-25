@@ -1,5 +1,5 @@
 const { BrowserWindow, screen } = require("electron").remote;
-const { getChannel } = require("./utils");
+const { config } = require("./utils");
 
 class MainWindowController {
 	constructor() {
@@ -69,8 +69,8 @@ class MainWindowController {
 		this.window.loadFile("app/index.html");
 
 		this.window.webContents.on("did-finish-load", () => {
-			this.window.webContents.send("background", backgroundImage);
-			this.window.webContents.send("setchannel", getChannel());
+			this.send("background", backgroundImage);
+			this.send("setchannel", config);
 		});
 
 		this.window.on("closed", () => {

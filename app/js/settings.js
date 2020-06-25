@@ -1,14 +1,5 @@
 const electron = require("electron").remote;
-const { dialog } = electron;
-const mainWindow = require('./mainwindow');
-
-const {
-	rule = "",
-	channel = "default"
-} = require("../config.json");
-
-document.getElementById("rule").value = rule;
-document.getElementById("channel").value = channel;
+const mainWindow = require("./mainwindow");
 
 const options = [0, 0, 0, 0, 0];
 
@@ -63,14 +54,7 @@ function panelSubmit() {
 	}
 }
 
-function about() {
-	dialog.showMessageBox({
-		message: `Mimi Danmaku Ver ${require("../../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`
-	});
-}
-
 module.exports = {
 	panelSubmit,
-	about,
 	options
-}
+};

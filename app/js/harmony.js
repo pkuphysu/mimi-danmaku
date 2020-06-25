@@ -1,6 +1,7 @@
 const { dialog } = require("electron").remote;
 const mainWindow = require('./mainwindow');
 const { options } = require('./settings');
+const { config } = require("./utils");
 
 class DanmakuController {
 	constructor() {
@@ -61,7 +62,7 @@ class DanmakuController {
 	}
 
 	filter(index) {
-		const ruleArray = document.getElementById("rule").value.split(" ");
+		const ruleArray = config.rule.split(" ");
 		let flag = true;
 		for (let rule of ruleArray) {
 			if (rule === "") continue;
