@@ -1,5 +1,5 @@
 function allow(index, flag) {
-	var target = document.getElementById(index).querySelectorAll("button");
+	const target = document.getElementById(index).querySelectorAll("button");
 	if (target[0].classList.contains("disabled")) return;
 	if (mainWindow) {
 		mainWindow.webContents.send("danmaku", JSON.stringify(outputArray[index]));
@@ -12,7 +12,7 @@ function allow(index, flag) {
 }
 
 function deny(index) {
-	var target = document.getElementById(index).querySelectorAll("button");
+	const target = document.getElementById(index).querySelectorAll("button");
 	if (target[1].classList.contains("disabled")) return;
 	target[0].innerHTML = "通过";
 	target[0].classList.remove("disabled");
@@ -24,8 +24,8 @@ function deny(index) {
 }
 
 function filter(index) {
-	var ruleArray = document.getElementById("rule").value.split(" ");
-	var flag = true;
+	const ruleArray = document.getElementById("rule").value.split(" ");
+	let flag = true;
 	for (let rule of ruleArray) {
 		if (rule === "") continue;
 		if (outputArray[index].content.includes(rule)) {
@@ -33,7 +33,7 @@ function filter(index) {
 				flag = false;
 				break;
 			} else {
-				var tmp = outputArray[index];
+				const tmp = outputArray[index];
 				tmp.content = tmp.content.split(rule).join("*");
 			}
 		}

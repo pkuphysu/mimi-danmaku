@@ -3,7 +3,7 @@ const { BrowserWindow, screen } = electron;
 // Create the browser window.
 function createWindow() {
 
-	var fullScreen = true, onTop = "main-menu", backgroundImage = false;
+	let fullScreen = true, onTop = "main-menu", backgroundImage = false;
 
 	if (options[0] === 1) fullScreen = false;
 	if (options[1] === 1) onTop = "floating";

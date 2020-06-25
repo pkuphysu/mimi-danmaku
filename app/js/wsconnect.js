@@ -1,4 +1,4 @@
-var ws = null;
+let ws = null;
 function wsinit(server, channel) {
 	ws = new WebSocket(server, headers = "danmaku" + channel);
 
@@ -7,15 +7,15 @@ function wsinit(server, channel) {
 	}
 
 	ws.onmessage = function(event) {
-		var msg = JSON.parse(event.data);
+		const msg = JSON.parse(event.data);
 		if (!msg.meta) return;
 		if (msg.from !== "user") return;
-		var message = {
+		const message = {
 			content: msg.content,
 			size: msg.meta.size,
 			color: msg.meta.color
 		};
-		var index = outputArray.length;
+		const index = outputArray.length;
 		document.querySelector("tbody").insertAdjacentHTML("afterbegin", `<tr id="${index}">
 			<td>${msg.content}</td>
 			<td>

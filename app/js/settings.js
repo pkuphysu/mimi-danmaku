@@ -7,7 +7,7 @@ function message(message) {
 	});
 }
 
-var {
+const {
 	server = "ws://localhost:9000",
 	rule = "",
 	channel = "default"
@@ -16,13 +16,9 @@ var {
 document.getElementById("rule").value = rule;
 document.getElementById("channel").value = channel;
 
-var mainWindow = null,
-	currentChannel = "default",
-	outputArray = [],
-	allowArray = [],
-	denyArray = [];
+let mainWindow = null, currentChannel = "default", outputArray = [], allowArray = [], denyArray = [];
 
-var options = [0, 0, 0, 0, 0];
+const options = [0, 0, 0, 0, 0];
 
 function getChannel() {
 	let channel = document.getElementById("channel").value.replace(/\W/g, "") || "default";
@@ -56,7 +52,7 @@ document.querySelectorAll(":not(td) > .btn-group").forEach((group, i) => {
 });
 
 function changeOption(i, j) {
-	var targets = document.querySelectorAll(".btn-group")[i].querySelectorAll("button");
+	const targets = document.querySelectorAll(".btn-group")[i].querySelectorAll("button");
 	targets.forEach(target => target.classList.remove("active"));
 	targets[j].classList.add("active");
 	options[i] = j;
