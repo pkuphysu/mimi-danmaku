@@ -57,7 +57,7 @@ ipcRenderer.on("remove", (event, message) => {
 	});
 });
 
-var output = [];
+let output = [];
 
 const canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
@@ -79,14 +79,14 @@ resize();
 
 function createDanmaku(text, size, color) {
 	let fontSize = canvas.height / 10;
-	var danmaku = {
+	let danmaku = {
 		speed: (canvas.width / 500) * (Math.random() * 0.5 + 0.75),
 		x    : canvas.width,
 		y    : Math.random() * canvas.height * 4 / 5 + fontSize,
 		text,
 		size : fontSize * size
 	};
-	var reg = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/;
+	let reg = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/;
 	danmaku.color = reg.test(color) ? color : availableColor[Math.floor(Math.random() * availableColor.length)];
 	return danmaku;
 }

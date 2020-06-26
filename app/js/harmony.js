@@ -1,6 +1,6 @@
 const { dialog } = require("electron").remote;
-const mainWindow = require('./mainwindow');
-const { options } = require('./settings');
+const mainWindow = require("./mainwindow");
+const { options } = require("./settings");
 const { config } = require("./utils");
 
 class DanmakuController {
@@ -53,8 +53,8 @@ class DanmakuController {
 			</td>`;
 		document.querySelector("tbody").prepend(element);
 		// Bind this
-		element.querySelector('.btn-success').addEventListener("click", () => this.allow(index, true));
-		element.querySelector('.btn-danger').addEventListener("click", () => this.deny(index));
+		element.querySelector(".btn-success").addEventListener("click", () => this.allow(index, true));
+		element.querySelector(".btn-danger").addEventListener("click", () => this.deny(index));
 		this.outputArray.push(message);
 		if (options[3] === 1) this.allow(index);
 		else if (options[3] === 2) this.deny(index);
@@ -63,20 +63,21 @@ class DanmakuController {
 
 	filter(index) {
 		const ruleArray = config.rule.split(" ");
+		const tmp = this.outputArray[index];
 		let flag = true;
 		for (let rule of ruleArray) {
 			if (rule === "") continue;
-			if (this.outputArray[index].content.includes(rule)) {
+			if (tmp.content.includes(rule)) {
 				if (options[4] === 0) {
 					flag = false;
 					break;
 				} else {
-					const tmp = this.outputArray[index];
 					tmp.content = tmp.content.split(rule).join("*");
 				}
 			}
 		}
-		(flag && !this.outputArray[index].content.split("").every(char => char === "*")) ? this.allow(index) : this.deny(index); //弹幕过滤器
+		if (tmp.content.split("").every(char => char === "*")) flag = false;
+		flag ? this.allow(index) : this.deny(index); //弹幕过滤器
 	}
 
 	clearAll() {

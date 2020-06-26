@@ -1,7 +1,7 @@
 const { dialog } = require("electron").remote;
-const danmakuController = require('./harmony');
+const danmakuController = require("./harmony");
 const { config } = require("./utils");
-const mainWindow = require('./mainwindow');
+const mainWindow = require("./mainwindow");
 
 class WebSocketController {
 	constructor() {
