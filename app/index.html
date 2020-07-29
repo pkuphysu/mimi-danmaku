@@ -38,10 +38,10 @@ ipcRenderer.on("background", (event, message) => { // 监听父页面定义的�
 	if (message) canvas.style.cssText = `background-image: url(${Bg});`;
 });
 
-ipcRenderer.on("setchannel", (event, message) => {
-	document.getElementById("channel").innerHTML = "频道：" + message.channel;
-	QRCode.toDataURL(`${message.client}/danmaku/?channel=${message.channel}`, (err, url) => {
-		document.getElementsByTagName("img")[0].src = url;
+ipcRenderer.on("setchannel", (event, { client, channel }) => {
+	document.getElementById("channel").innerHTML = "频道：" + channel;
+	QRCode.toDataURL(`${client}/danmaku/?channel=${channel}`, (err, url) => {
+		document.querySelector("img").src = url;
 	});
 });
 

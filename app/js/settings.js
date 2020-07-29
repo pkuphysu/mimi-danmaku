@@ -43,13 +43,11 @@ function changeOption(i, j) {
 function panelSubmit() {
 	if (mainWindow.window) {
 		document.getElementById("submit").innerHTML = "开启弹幕窗口";
-		document.getElementById("submit").classList.remove("btn-danger");
-		document.getElementById("submit").classList.add("btn-primary");
+		document.getElementById("submit").classList.replace("btn-danger", "btn-primary");
 		mainWindow.closeWindow();
 	} else {
 		document.getElementById("submit").innerHTML = "关闭弹幕窗口";
-		document.getElementById("submit").classList.remove("btn-primary");
-		document.getElementById("submit").classList.add("btn-danger");
+		document.getElementById("submit").classList.replace("btn-primary", "btn-danger");
 		mainWindow.createWindow(options);
 	}
 }
