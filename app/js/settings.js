@@ -1,16 +1,10 @@
-const electron = require("electron").remote;
 const mainWindow = require("./mainwindow");
 
 const options = [0, 0, 0, 0, 0];
 
 window.addEventListener("beforeunload", event => {
 	if (mainWindow.window) {
-		const options = {
-			type   : "warning",
-			title  : "[Warning]",
-			message: "弹幕窗口处于开启状态，无法退出控制面板！"
-		};
-		electron.dialog.showMessageBox(electron.getCurrentWindow(), options);
+		ipcRenderer.send("show-warning", "弹幕窗口处于开启状态，无法退出控制面板！");
 		event.returnValue = false;
 	}
 });

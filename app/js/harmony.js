@@ -1,4 +1,3 @@
-const { dialog } = require("electron").remote;
 const mainWindow = require("./mainwindow");
 const { options } = require("./settings");
 const { config } = require("./utils");
@@ -18,9 +17,7 @@ class DanmakuController {
 			target[1].innerHTML = "禁止";
 			target[1].classList.remove("disabled");
 		}
-		else if (flag) dialog.showMessageBox({
-			message: "请先开启弹幕窗口！"
-		});
+		else if (flag) ipcRenderer.send("show-message", "请先开启弹幕窗口！");
 	}
 
 	deny(index) {

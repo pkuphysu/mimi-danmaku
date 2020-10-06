@@ -1,7 +1,8 @@
 const electron = require("electron");
 // Module to control application life.
 // Module to create native browser window.
-const { app, BrowserWindow, TouchBar } = electron;
+const { app, BrowserWindow, TouchBar, dialog } = electron;
+const ipc = electron.ipcMain;
 
 const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar;
 
@@ -79,3 +80,17 @@ app.on("activate", function() {
 // code. You can also put them in separate files and require them here.
 
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = true;
+
+ipc.on("show-warning", (event, message) => {
+	dialog.showMessageBox({
+		type: "warning",
+		title: "[Warning]",
+		message
+	});
+});
+
+ipc.on("show-message", (event, message) => {
+	dialog.showMessageBox({
+		message
+	});
+});

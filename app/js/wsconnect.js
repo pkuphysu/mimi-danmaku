@@ -1,4 +1,3 @@
-const { dialog } = require("electron").remote;
 const danmakuController = require("./harmony");
 const { config } = require("./utils");
 const mainWindow = require("./mainwindow");
@@ -17,9 +16,7 @@ class WebSocketController {
 		this.ws = new WebSocket(config.server, "danmaku" + config.channel);
 
 		this.ws.onopen = function() {
-			dialog.showMessageBox({
-				message: "系统消息：建立连接成功"
-			});
+			ipcRenderer.send("show-message", "系统消息：建立连接成功");
 		}
 		// Bind this
 		this.ws.onmessage = event => {
@@ -30,9 +27,7 @@ class WebSocketController {
 		}
 
 		this.ws.onerror = function() {
-			dialog.showMessageBox({
-				message: "系统消息：连接失败，请手动关闭窗口并稍后再试"
-			});
+			ipcRenderer.send("show-message", "系统消息：连接失败，请手动关闭窗口并稍后再试");
 		}
 
 		mainWindow.send("setchannel", config);

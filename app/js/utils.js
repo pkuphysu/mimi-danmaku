@@ -1,5 +1,3 @@
-const { dialog } = require("electron").remote;
-
 const config = require("../config.json");
 Object.keys(config).forEach(key => {
     let save = localStorage.getItem(key);
@@ -15,10 +13,7 @@ Object.keys(config).forEach(key => {
 });
 
 function about() {
-    console.log(process.versions)
-    dialog.showMessageBox({
-        message: `Mimi Danmaku Ver ${require("../../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`
-    });
+    ipcRenderer.send("show-message", `Mimi Danmaku Ver ${require("../../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }
 
 module.exports = {
