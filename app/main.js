@@ -1,8 +1,7 @@
 const electron = require("electron");
 // Module to control application life.
 // Module to create native browser window.
-const { app, BrowserWindow, TouchBar, dialog } = electron;
-const ipc = electron.ipcMain;
+const { app, ipcMain, BrowserWindow, TouchBar, dialog } = electron;
 
 const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar;
 require("@electron/remote/main").initialize();
@@ -81,7 +80,7 @@ app.on("activate", function() {
 
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = true;
 
-ipc.on("show-warning", (event, message) => {
+ipcMain.on("show-warning", (event, message) => {
 	dialog.showMessageBox({
 		type: "warning",
 		title: "[Warning]",
@@ -89,7 +88,7 @@ ipc.on("show-warning", (event, message) => {
 	});
 });
 
-ipc.on("show-message", (event, message) => {
+ipcMain.on("show-message", (event, message) => {
 	dialog.showMessageBox({
 		message
 	});
