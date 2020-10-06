@@ -1,4 +1,4 @@
-const { BrowserWindow, screen } = require("electron").remote;
+const { BrowserWindow, screen } = require("@electron/remote");
 const { config } = require("./utils");
 
 class MainWindowController {

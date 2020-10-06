@@ -41,7 +41,8 @@
 		"electron-builder": "22.8.0"
 	},
 	"dependencies": {
-		"bootstrap": "^4.0.0",
+		"@electron/remote": "^1.0.0",
+		"bootstrap": "^4.5.2",
 		"qrcode": "^1.4.4"
 	}
 }

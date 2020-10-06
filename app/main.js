@@ -5,7 +5,7 @@ const { app, BrowserWindow, TouchBar, dialog } = electron;
 const ipc = electron.ipcMain;
 
 const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar;
-
+require("@electron/remote/main").initialize();
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let panelWindow;
