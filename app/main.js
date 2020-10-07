@@ -1,20 +1,15 @@
-const electron = require("electron");
-// Module to control application life.
-// Module to create native browser window.
-const { app, ipcMain, BrowserWindow, TouchBar, dialog } = electron;
+// Modules to control application life and create native browser window
+const { app, ipcMain, BrowserWindow, TouchBar, dialog, screen } = require("electron");
 
 const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar;
 require("@electron/remote/main").initialize();
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let panelWindow;
 
 function createPanel() {
 
-	panelWindow = new BrowserWindow({
+	const panelWindow = new BrowserWindow({
 		width         : 500,
 		minWidth      : 500,
-		height        : electron.screen.getPrimaryDisplay().workAreaSize.height,
+		height        : screen.getPrimaryDisplay().workAreaSize.height,
 		minHeight     : 400,
 		fullscreenable: false,
 		title         : "Mimi Danmaku Panel",
@@ -43,36 +38,26 @@ function createPanel() {
 
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools()
-
-	// Emitted when the window is closed.
-	panelWindow.on("closed", function() {
-		// Dereference the window object, usually you would store windows
-		// in an array if your app supports multi windows, this is the time
-		// when you should delete the corresponding element.
-		panelWindow = null;
-	});
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createPanel);
+app.whenReady().then(() => {
+	createPanel();
 
-// Quit when all windows are closed.
-app.on("window-all-closed", function() {
-	// On OS X it is common for applications and their menu bar
-	// to stay active until the user quits explicitly with Cmd + Q
-	if (process.platform !== "darwin") {
-		app.quit();
-	}
+	app.on("activate", function() {
+		// On macOS it's common to re-create a window in the app when the
+		// dock icon is clicked and there are no other windows open.
+		if (BrowserWindow.getAllWindows().length === 0) createPanel();
+	});
 });
 
-app.on("activate", function() {
-	// On OS X it's common to re-create a window in the app when the
-	// dock icon is clicked and there are no other windows open.
-	if (panelWindow === null) {
-		createPanel();
-	}
+// Quit when all windows are closed, except on macOS. There, it's common
+// for applications and their menu bar to stay active until the user quits
+// explicitly with Cmd + Q.
+app.on("window-all-closed", function() {
+	if (process.platform !== "darwin") app.quit();
 });
 
 // In this file you can include the rest of your app's specific main process
