@@ -1,48 +1,45 @@
 {
-	"name": "mimi-danmaku",
-	"version": "2.1.1",
-	"description": "Mimi Danmaku client for desktop platform.",
-	"main": "app/main.js",
-	"scripts": {
-		"start": "electron .",
-		"build": "electron-builder"
-	},
-	"build": {
-		"productName": "Mimi Danmaku",
-		"artifactName": "${productName}-${version}.${ext}",
-		"win": {
-			"legalTrademarks": "Mimi Personal"
-		},
-		"nsis": {
-			"allowToChangeInstallationDirectory": true,
-			"oneClick": false,
-			"menuCategory": true,
-			"allowElevation": false
-		}
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/stevenjoezhang/mimi-danmaku"
-	},
-	"keywords": [
-		"Mimi",
-		"Danmaku",
-		"Client"
-	],
-	"author": "Mimi <stevenjoezhang@gmail.com> (https://zhangshuqiao.org)",
-	"readme": "https://github.com/stevenjoezhang/mimi-danmaku#readme",
-	"license": "GPL-3.0-or-later",
-	"bugs": {
-		"url": "https://github.com/stevenjoezhang/mimi-danmaku/issues"
-	},
-	"homepage": "https://github.com/stevenjoezhang/mimi-danmaku",
-	"devDependencies": {
-		"electron": "11.0.0",
-		"electron-builder": "22.8.0"
-	},
-	"dependencies": {
-		"@electron/remote": "^1.0.0",
-		"bootstrap": "^4.5.2",
-		"qrcode": "^1.4.4"
-	}
+  "name": "mimi-danmaku",
+  "version": "2.1.1",
+  "description": "Mimi Danmaku client for desktop platform.",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "productName": "Mimi Danmaku",
+    "artifactName": "${productName}-${version}.${ext}",
+    "win": {
+      "legalTrademarks": "Mimi Personal"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "menuCategory": true,
+      "allowElevation": false
+    }
+  },
+  "repository": "stevenjoezhang/mimi-danmaku",
+  "keywords": [
+    "Mimi",
+    "Danmaku",
+    "Client"
+  ],
+  "author": "Mimi <stevenjoezhang@gmail.com> (https://zhangshuqiao.org)",
+  "readme": "https://github.com/stevenjoezhang/mimi-danmaku#readme",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/stevenjoezhang/mimi-danmaku/issues"
+  },
+  "homepage": "https://github.com/stevenjoezhang/mimi-danmaku",
+  "devDependencies": {
+    "electron": "11.0.0",
+    "electron-builder": "22.8.0"
+  },
+  "dependencies": {
+    "@electron/remote": "^1.0.0",
+    "bootstrap": "^4.5.2",
+    "qrcode": "^1.4.4"
+  }
 }
