@@ -1,6 +1,7 @@
 {
   "name": "mimi-danmaku",
-  "version": "2.1.1",
+  "version": "2.1.2",
+  "private": true,
   "description": "Mimi Danmaku client for desktop platform.",
   "main": "app/main.js",
   "scripts": {
@@ -33,13 +34,13 @@
     "url": "https://github.com/stevenjoezhang/mimi-danmaku/issues"
   },
   "homepage": "https://github.com/stevenjoezhang/mimi-danmaku",
-  "devDependencies": {
-    "electron": "11.0.0",
-    "electron-builder": "22.8.0"
-  },
   "dependencies": {
     "@electron/remote": "^1.0.0",
     "bootstrap": "^4.5.2",
     "qrcode": "^1.4.4"
+  },
+  "devDependencies": {
+    "electron": "11.0.0",
+    "electron-builder": "22.8.0"
   }
 }
