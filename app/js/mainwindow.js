@@ -21,7 +21,8 @@ class MainWindowController {
 				toolbar: false,
 				title: "Mimi Danmaku",
 				webPreferences: {
-					nodeIntegration: true
+					nodeIntegration : true,
+					contextIsolation: false
 				}
 			};
 			let displays = screen.getAllDisplays();
@@ -60,7 +61,8 @@ class MainWindowController {
 				frame: true,
 				title: "Mimi Danmaku",
 				webPreferences: {
-					nodeIntegration: true
+					nodeIntegration : true,
+					contextIsolation: false
 				}
 			});
 		}
