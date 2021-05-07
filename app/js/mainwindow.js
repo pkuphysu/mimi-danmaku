@@ -40,8 +40,8 @@ class MainWindowController {
 			} else {
 				this.window = new BrowserWindow({
 					...config,
-					width: screen.getPrimaryDisplay().workAreaSize.width,
-					height: screen.getPrimaryDisplay().workAreaSize.height
+					width: screen.getPrimaryDisplay().workAreaSize.width - 3,
+					height: screen.getPrimaryDisplay().workAreaSize.height - 2
 				});
 			}
 
