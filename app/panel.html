@@ -4,15 +4,9 @@
 <meta charset="UTF-8">
 <title>Mimi Danmaku Panel</title>
 <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-<style>
-.container {
-	margin: 20px;
-	max-width: calc(100% - 40px);
-}
-</style>
 </head>
 <body>
-<div class="container g-0">
+<div class="container-fluid g-4 mt-3">
 	<h1>Mimi Danmaku</h1>
 	<p id="help">欢迎使用米米弹幕</p>
 
@@ -85,7 +79,7 @@
 		</div>
 		<div class="mb-3">
 			<button class="btn btn-primary" onclick="MimiDanmaku.danmaku.clearAll()">清空弹幕列表</button>
-			<button class="btn btn-danger" onclick="MimiDanmaku.danmaku.denyAll()" id="submit">撤回所有弹幕</button>
+			<button class="btn btn-danger" onclick="MimiDanmaku.danmaku.denyAll()">撤回所有弹幕</button>
 		</div>
 		<table class="table table-striped" style="table-layout: fixed;">
 			<thead>
@@ -109,19 +103,22 @@
 	</div>
 </div>
 
-<script>
-const { ipcRenderer } = require("electron");
-const webSocketController = require("./js/wsconnect");
-const danmakuController = require("./js/harmony");
-const { panelSubmit } = require("./js/settings");
-const { about } = require("./js/utils");
+<script type="module">
+import webSocketController from "./js/wsconnect.js";
+import danmakuController from "./js/harmony.js";
+import { panelSubmit } from "./js/settings.js";
+import { about } from "./js/utils.js";
 
-const MimiDanmaku = {
+const { ipcRenderer } = require("electron");
+
+window.MimiDanmaku = {
 	ws: webSocketController,
 	danmaku: danmakuController,
 	panelSubmit,
 	about
 };
+
+window.ipcRenderer = ipcRenderer;
 
 ipcRenderer.on("denyall", () => {
 	MimiDanmaku.danmaku.denyAll();

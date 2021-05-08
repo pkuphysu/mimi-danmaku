@@ -1,4 +1,5 @@
-const config = require("../config.json");
+const config = require("./config.json");
+
 Object.keys(config).forEach(key => {
     let save = localStorage.getItem(key);
     if (save) config[key] = save;
@@ -16,7 +17,7 @@ function about() {
     ipcRenderer.send("show-message", `Mimi Danmaku Ver ${require("../../package.json").version}\n\nWe are using Node.js ${process.versions.node}, Chromium ${process.versions.chrome}, and Electron ${process.versions.electron}. Powered by Mimi.`);
 }
 
-module.exports = {
+export {
     config,
     about
 };

@@ -1,6 +1,6 @@
-const danmakuController = require("./harmony");
-const { config } = require("./utils");
-const mainWindow = require("./mainwindow");
+import danmakuController from "./harmony.js";
+import { config } from "./utils.js";
+import mainWindow from "./mainwindow.js";
 
 class WebSocketController {
 	constructor() {
@@ -40,4 +40,4 @@ class WebSocketController {
 	}
 }
 
-module.exports = new WebSocketController();
+export default new WebSocketController();

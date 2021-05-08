@@ -1,6 +1,6 @@
-const mainWindow = require("./mainwindow");
-const { options } = require("./settings");
-const { config } = require("./utils");
+import mainWindow from "./mainwindow.js";
+import { options } from "./settings.js";
+import { config } from "./utils.js";
 
 class DanmakuController {
 	constructor() {
@@ -94,4 +94,4 @@ class DanmakuController {
 	}
 }
 
-module.exports = new DanmakuController();
+export default new DanmakuController();

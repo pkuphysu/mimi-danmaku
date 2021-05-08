@@ -1,4 +1,4 @@
-const mainWindow = require("./mainwindow");
+import mainWindow from "./mainwindow.js";
 
 const options = [0, 0, 0, 0, 0];
 
@@ -46,7 +46,7 @@ function panelSubmit() {
 	}
 }
 
-module.exports = {
+export {
 	panelSubmit,
 	options
 };

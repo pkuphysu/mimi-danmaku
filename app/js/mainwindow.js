@@ -1,5 +1,5 @@
 const { BrowserWindow, screen } = require("@electron/remote");
-const { config } = require("./utils");
+import { config } from "./utils.js";
 
 class MainWindowController {
 	constructor() {
@@ -92,4 +92,4 @@ class MainWindowController {
 	}
 }
 
-module.exports = new MainWindowController();
+export default new MainWindowController();
