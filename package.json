@@ -36,7 +36,7 @@
   "homepage": "https://github.com/stevenjoezhang/mimi-danmaku",
   "dependencies": {
     "@electron/remote": "^1.0.2",
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^5.0.0",
     "qrcode": "^1.4.4"
   },
   "devDependencies": {
