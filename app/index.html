@@ -10,9 +10,6 @@ body {
 	min-width: 960px;
 	text-align: center;
 }
-span {
-	color: white;
-}
 canvas {
 	background-size: cover;
 	left: 0;
@@ -20,11 +17,23 @@ canvas {
 	top: 0;
 	z-index: -1;
 }
+#qrcode {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	z-index: 100;
+	opacity: 0.9;
+	color: white;
+}
+#qrcode img {
+	width: 200px;
+	border-radius: 20px;
+}
 </style>
 </head>
 <body>
-<div style="position: fixed; bottom: 20px; left: 20px; z-index: 100; opacity: 0.9;">
-	<img src="images/galaxymimi.svg" style="width: 200px; border-radius: 20px;">
+<div id="qrcode">
+	<img src="images/galaxymimi.svg">
 	<br>
 	<span>Mimi弹幕</span>
 	<br>
@@ -35,11 +44,11 @@ const { ipcRenderer } = require("electron");
 const QRCode = require("qrcode");
 
 ipcRenderer.on("background", (event, message) => { // 监听父页面定义的端口
-	if (message) canvas.style.cssText = `background-image: url(${Bg});`;
+	if (message) canvas.style.backgroundImage = `url(${Bg})`;
 });
 
 ipcRenderer.on("setchannel", (event, { client, channel }) => {
-	document.getElementById("channel").innerHTML = "频道：" + channel;
+	document.getElementById("channel").textContent = "频道：" + channel;
 	QRCode.toDataURL(`${client}/danmaku/?channel=${channel}`, (err, url) => {
 		document.querySelector("img").src = url;
 	});

@@ -48,5 +48,5 @@ http://www.gnu.org/licenses/gpl-3.0.html
 
 - [ ] 屏蔽指定用户
 - [ ] 支持正则屏蔽
-- [x] 支持投影屏幕（[electron/screen.md](https://github.com/electron/electron/blob/master/docs/api/screen.md)）
+- [x] 支持投影屏幕（[electron/screen.md](https://github.com/electron/electron/blob/main/docs/api/screen.md)）
 - [ ] 允许选择字体
