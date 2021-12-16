@@ -8,7 +8,7 @@ Object.keys(config).forEach(key => {
     element.addEventListener("change", () => {
         let { value } = element;
         if (element.id === "channel") value = value.replace(/\W/g, "");
-        if (value) localStorage.setItem(key, value);
+        if (key === "client" || value) localStorage.setItem(key, value);
         config[key] = value;
     });
 });

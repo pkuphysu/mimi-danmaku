@@ -48,6 +48,10 @@ ipcRenderer.on("background", (event, message) => { // 监听父页面定义的�
 });
 
 ipcRenderer.on("setchannel", (event, { client, channel }) => {
+	if (!client) {
+		document.querySelector("img").src = "";
+		return;
+	}
 	document.getElementById("channel").textContent = "频道：" + channel;
 	QRCode.toDataURL(`${client}/danmaku/?channel=${channel}`, (err, url) => {
 		document.querySelector("img").src = url;
