@@ -15,10 +15,11 @@ function createPanel() {
 		title         : "Mimi Danmaku Panel",
 		webPreferences: {
 			nodeIntegration   : true,
-			contextIsolation  : false,
-			enableRemoteModule: true
+			contextIsolation  : false
 		}
 	});
+
+	require("@electron/remote/main").enable(panelWindow.webContents);
 
 	panelWindow.loadFile("app/panel.html");
 

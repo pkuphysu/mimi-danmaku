@@ -13,6 +13,7 @@ Set up a mirror of electron before installation if necessary:
 ```bash
 export ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/" # *NIX command line
 set ELECTRON_MIRROR=https://cdn.npm.taobao.org/dist/electron/ # Windows CMD
+$env:ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/" # Windows PowerShell
 ```
 
 From your command line:
