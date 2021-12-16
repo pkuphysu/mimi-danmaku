@@ -2,7 +2,7 @@ const config = require("./config.json");
 
 Object.keys(config).forEach(key => {
     let save = localStorage.getItem(key);
-    if (save) config[key] = save;
+    if (key === "client" || save) config[key] = save;
     let element = document.getElementById(key);
     element.value = config[key];
     element.addEventListener("change", () => {

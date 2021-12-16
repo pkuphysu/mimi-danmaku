@@ -38,8 +38,17 @@ function createPanel() {
 
 	//panelWindow.setPosition(0, 0, true);
 
-	// Open the DevTools.
-	// mainWindow.webContents.openDevTools()
+	panelWindow.on("close", async e => {
+
+		if (BrowserWindow.getAllWindows().length > 1) {
+			e.preventDefault();
+			dialog.showMessageBox({
+				type: "warning",
+				title: "[Warning]",
+				message: "弹幕窗口处于开启状态，无法退出控制面板！"
+			});
+		}
+	});
 }
 
 // This method will be called when Electron has finished
@@ -66,14 +75,6 @@ app.on("window-all-closed", function() {
 // code. You can also put them in separate files and require them here.
 
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = true;
-
-ipcMain.on("show-warning", (event, message) => {
-	dialog.showMessageBox({
-		type: "warning",
-		title: "[Warning]",
-		message
-	});
-});
 
 ipcMain.on("show-message", (event, message) => {
 	dialog.showMessageBox({

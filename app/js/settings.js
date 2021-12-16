@@ -2,13 +2,6 @@ import mainWindow from "./mainwindow.js";
 
 const options = [0, 0, 0, 0, 0];
 
-window.addEventListener("beforeunload", event => {
-	if (mainWindow.window) {
-		ipcRenderer.send("show-warning", "弹幕窗口处于开启状态，无法退出控制面板！");
-		event.returnValue = false;
-	}
-});
-
 document.querySelectorAll(":not(td) > .btn-group").forEach((group, i) => {
 	group.querySelectorAll("button").forEach((target, j) => {
 		target.addEventListener("mouseover", event => {
