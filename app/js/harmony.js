@@ -32,16 +32,11 @@ class DanmakuController {
 		}
 	}
 
-	insert(msg) {
-		const message = {
-			content: msg.content,
-			size: msg.meta.size,
-			color: msg.meta.color
-		};
+	insert(message) {
 		const index = this.outputArray.length;
 		const element = document.createElement("tr");
 		element.id = index;
-		element.innerHTML = `<td>${msg.content}</td>
+		element.innerHTML = `<td>${message.content}</td>
 			<td>
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-success">通过</button>

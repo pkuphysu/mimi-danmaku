@@ -22,8 +22,8 @@ function changeOption(i, j) {
 	targets[j].classList.add("active");
 	options[i] = j;
 	if (i === 0) {
-		document.querySelectorAll(".mb-3")[!j + 1].style.display = "none";
-		document.querySelectorAll(".mb-3")[j + 1].style.display = "";
+		document.querySelectorAll(".mb-3")[!j + 1].classList.add("d-none");
+		document.querySelectorAll(".mb-3")[j + 1].classList.remove("d-none");
 	}
 }
 

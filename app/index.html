@@ -60,13 +60,13 @@ ipcRenderer.on("setchannel", (event, { client, channel }) => {
 
 ipcRenderer.on("danmaku", (event, message) => {
 	message = JSON.parse(message);
-	output.push(createDanmaku(message.content, message.size, message.color));
+	output.push(createDanmaku(message));
 });
 
 ipcRenderer.on("remove", (event, message) => {
 	message = JSON.parse(message);
 	output = output.filter(item => {
-		return item.text !== message.content; // 会删除所有相同弹幕
+		return item.content !== message.content; // 会删除所有相同弹幕
 	});
 });
 
@@ -90,13 +90,14 @@ window.onresize = resize;
 
 resize();
 
-function createDanmaku(text, size, color) {
+function createDanmaku(message) {
+	let { content, meta: { size, color } } = message;
 	let fontSize = canvas.height / 10;
 	let danmaku = {
 		speed: (canvas.width / 500) * (Math.random() * 0.5 + 0.75),
 		x    : canvas.width,
 		y    : Math.random() * canvas.height * 4 / 5 + fontSize,
-		text,
+		content,
 		size : fontSize * size
 	};
 	let reg = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/;
@@ -107,7 +108,7 @@ function createDanmaku(text, size, color) {
 function draw(obj) {
 	context.font = `700 ${obj.size}px Microsoft YaHei`;
 	context.fillStyle = obj.color;
-	context.fillText(obj.text, obj.x, obj.y);
+	context.fillText(obj.content, obj.x, obj.y);
 }
 
 setInterval(() => {
@@ -115,7 +116,7 @@ setInterval(() => {
 	output = output.filter(item => {
 		draw(item);
 		item.x -= item.speed;
-		return item.x >= -context.measureText(item.text).width;
+		return item.x >= -context.measureText(item.content).width;
 	});
 }, 20);
 </script>

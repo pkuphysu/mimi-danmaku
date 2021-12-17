@@ -7,15 +7,15 @@ require("@electron/remote/main").initialize();
 function createPanel() {
 
 	const panelWindow = new BrowserWindow({
-		width         : 500,
-		minWidth      : 500,
-		height        : screen.getPrimaryDisplay().workAreaSize.height,
+		width         : 1200,
+		minWidth      : 1200,
+		height        : screen.getPrimaryDisplay().workAreaSize.height * 0.8,
 		minHeight     : 400,
 		fullscreenable: false,
 		title         : "Mimi Danmaku Panel",
 		webPreferences: {
-			nodeIntegration   : true,
-			contextIsolation  : false
+			nodeIntegration : true,
+			contextIsolation: false
 		}
 	});
 

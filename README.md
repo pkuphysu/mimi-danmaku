@@ -1,7 +1,7 @@
 # Mimi Danmaku Client
 
-基于 Node.js 和 Electron 构建的 Websocket 弹幕客户端。服务端见 [mimi-chat](https://github.com/stevenjoezhang/mimi-chat)。  
-A Websocket danmaku client based on Node.js and Electron.
+基于 Node.js 和 Electron 构建的 WebSocket 弹幕客户端。服务端见 [mimi-chat](https://github.com/stevenjoezhang/mimi-chat)。  
+A WebSocket danmaku client based on Node.js and Electron.
 
 ![](screenshot.png)
 
