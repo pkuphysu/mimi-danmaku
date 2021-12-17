@@ -36,14 +36,15 @@ class DanmakuController {
 		const index = this.outputArray.length;
 		const element = document.createElement("tr");
 		element.id = index;
-		element.innerHTML = `<td></td>
+		element.innerHTML = `<td>${new Intl.DateTimeFormat("en-GB", { timeStyle: "medium" }).format(new Date())}</td>
+			<td></td>
 			<td>
-				<div class="btn-group" role="group">
+				<div class="btn-group btn-group-sm" role="group">
 					<button type="button" class="btn btn-success">通过</button>
 					<button type="button" class="btn btn-danger">禁止</button>
 				</div>
 			</td>`;
-		element.querySelector("td").textContent = message.content;
+		element.querySelectorAll("td")[1].textContent = message.content;
 		document.querySelector("tbody").prepend(element);
 		// Bind this
 		element.querySelector(".btn-success").addEventListener("click", () => this.allow(index, true));
@@ -75,9 +76,10 @@ class DanmakuController {
 
 	clearAll() {
 		document.querySelector("tbody").innerHTML = `<tr>
+		<td>${new Intl.DateTimeFormat("en-GB", { timeStyle: "medium" }).format(new Date())}</td>
 		<td>欢迎使用米米弹幕</td>
 		<td>
-			<div class="btn-group" role="group">
+			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-success disabled">已通过</button>
 				<button type="button" class="btn btn-danger disabled">禁止</button>
 			</div>

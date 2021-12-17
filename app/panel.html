@@ -89,20 +89,12 @@
 			<table class="table table-striped mt-3" style="table-layout: fixed;">
 				<thead>
 					<tr>
+						<th style="width: 90px;">发送时间</th>
 						<th>弹幕内容</th>
-						<th style="width: 160px;">审核</th>
+						<th style="width: 130px;">审核</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>欢迎使用米米弹幕</td>
-						<td>
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-success disabled">已通过</button>
-								<button type="button" class="btn btn-danger disabled">禁止</button>
-							</div>
-						</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -123,7 +115,7 @@ window.MimiDanmaku = {
 	panelSubmit,
 	about
 };
-
+MimiDanmaku.danmaku.clearAll();
 window.ipcRenderer = ipcRenderer;
 
 ipcRenderer.on("denyall", () => {
