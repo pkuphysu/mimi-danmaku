@@ -12,9 +12,9 @@ class DanmakuController {
 		if (target[0].classList.contains("disabled")) return;
 		if (mainWindow.window) {
 			mainWindow.send("danmaku", JSON.stringify(this.outputArray[index]));
-			target[0].innerHTML = "已通过";
+			target[0].textContent = "已通过";
 			target[0].classList.add("disabled");
-			target[1].innerHTML = "禁止";
+			target[1].textContent = "禁止";
 			target[1].classList.remove("disabled");
 		}
 		else if (flag) ipcRenderer.send("show-message", "请先开启弹幕窗口！");
@@ -23,9 +23,9 @@ class DanmakuController {
 	deny(index) {
 		const target = document.getElementById(index).querySelectorAll("button");
 		if (target[1].classList.contains("disabled")) return;
-		target[0].innerHTML = "通过";
+		target[0].textContent = "通过";
 		target[0].classList.remove("disabled");
-		target[1].innerHTML = "已禁止";
+		target[1].textContent = "已禁止";
 		target[1].classList.add("disabled");
 		if (mainWindow.window) {
 			mainWindow.send("remove", JSON.stringify(this.outputArray[index]));
@@ -36,13 +36,14 @@ class DanmakuController {
 		const index = this.outputArray.length;
 		const element = document.createElement("tr");
 		element.id = index;
-		element.innerHTML = `<td>${message.content}</td>
+		element.innerHTML = `<td></td>
 			<td>
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-success">通过</button>
 					<button type="button" class="btn btn-danger">禁止</button>
 				</div>
 			</td>`;
+		element.querySelector("td").textContent = message.content;
 		document.querySelector("tbody").prepend(element);
 		// Bind this
 		element.querySelector(".btn-success").addEventListener("click", () => this.allow(index, true));

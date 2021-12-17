@@ -5,10 +5,10 @@ const options = [0, 0, 0, 0, 0];
 document.querySelectorAll(":not(td) > .btn-group").forEach((group, i) => {
 	group.querySelectorAll("button").forEach((target, j) => {
 		target.addEventListener("mouseover", event => {
-			document.getElementById("help").innerHTML = event.target.dataset.help;
+			document.getElementById("help").textContent = event.target.dataset.help;
 		});
 		target.addEventListener("mouseout", event => {
-			document.getElementById("help").innerHTML = "欢迎使用米米弹幕";
+			document.getElementById("help").textContent = "欢迎使用米米弹幕";
 		});
 		target.addEventListener("click", event => {
 			changeOption(i, j);
@@ -29,11 +29,11 @@ function changeOption(i, j) {
 
 function panelSubmit() {
 	if (mainWindow.window) {
-		document.getElementById("submit").innerHTML = "开启弹幕窗口";
+		document.getElementById("submit").textContent = "开启弹幕窗口";
 		document.getElementById("submit").classList.replace("btn-danger", "btn-primary");
 		mainWindow.closeWindow();
 	} else {
-		document.getElementById("submit").innerHTML = "关闭弹幕窗口";
+		document.getElementById("submit").textContent = "关闭弹幕窗口";
 		document.getElementById("submit").classList.replace("btn-primary", "btn-danger");
 		mainWindow.createWindow(options);
 	}

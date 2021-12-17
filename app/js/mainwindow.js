@@ -76,7 +76,7 @@ class MainWindowController {
 		});
 
 		this.window.on("closed", () => {
-			document.getElementById("submit").innerHTML = "开启弹幕窗口";
+			document.getElementById("submit").textContent = "开启弹幕窗口";
 			document.getElementById("submit").classList.replace("btn-danger", "btn-primary");
 			this.window = null;
 		});
