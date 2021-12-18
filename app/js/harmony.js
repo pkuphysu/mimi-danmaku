@@ -28,7 +28,7 @@ class DanmakuController {
 		target[1].textContent = "已禁止";
 		target[1].classList.add("disabled");
 		if (mainWindow.window) {
-			mainWindow.send("remove", JSON.stringify(this.outputArray[index]));
+			mainWindow.send("remove", this.outputArray[index].content);
 		}
 	}
 

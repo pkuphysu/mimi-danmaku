@@ -39,12 +39,15 @@ canvas {
 	<br>
 	<span id="channel"></span>
 </div>
+<script src="js/danmaku.js"></script>
 <script>
 const { ipcRenderer } = require("electron");
 const QRCode = require("qrcode");
 
+const danmaku = new Danmaku();
+
 ipcRenderer.on("background", (event, message) => { // 监听父页面定义的端口
-	if (message) canvas.style.backgroundImage = `url(${Bg})`;
+	if (message) danmaku.setBackground();
 });
 
 ipcRenderer.on("setchannel", (event, { client, channel }) => {
@@ -60,65 +63,14 @@ ipcRenderer.on("setchannel", (event, { client, channel }) => {
 
 ipcRenderer.on("danmaku", (event, message) => {
 	message = JSON.parse(message);
-	output.push(createDanmaku(message));
+	danmaku.createDanmaku(message);
 });
 
-ipcRenderer.on("remove", (event, message) => {
-	message = JSON.parse(message);
-	output = output.filter(item => {
-		return item.content !== message.content; // 会删除所有相同弹幕
+ipcRenderer.on("remove", (event, content) => {
+	danmaku.output = danmaku.output.filter(item => {
+		return item.content !== content; // 会删除所有相同弹幕
 	});
 });
-
-let output = [];
-
-const canvas = document.createElement("canvas");
-const context = canvas.getContext("2d");
-document.body.appendChild(canvas);
-
-const availableBg = ["sky.jpg", "bg1.jpg", "bg2.jpg"];
-const Bg = "images/" + availableBg[Math.floor(Math.random() * availableBg.length)];
-
-const availableColor = ["orange", "red", "blue", "purple", "green", "white"];
-
-function resize() {
-	canvas.width = window.innerWidth
-	canvas.height = window.innerHeight;
-};
-
-window.onresize = resize;
-
-resize();
-
-function createDanmaku(message) {
-	let { content, meta: { size, color } } = message;
-	let fontSize = canvas.height / 10;
-	let danmaku = {
-		speed: (canvas.width / 500) * (Math.random() * 0.5 + 0.75),
-		x    : canvas.width,
-		y    : Math.random() * canvas.height * 4 / 5 + fontSize,
-		content,
-		size : fontSize * size
-	};
-	let reg = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/;
-	danmaku.color = reg.test(color) ? color : availableColor[Math.floor(Math.random() * availableColor.length)];
-	return danmaku;
-}
-
-function draw(obj) {
-	context.font = `700 ${obj.size}px Microsoft YaHei`;
-	context.fillStyle = obj.color;
-	context.fillText(obj.content, obj.x, obj.y);
-}
-
-setInterval(() => {
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	output = output.filter(item => {
-		draw(item);
-		item.x -= item.speed;
-		return item.x >= -context.measureText(item.content).width;
-	});
-}, 20);
 </script>
 </body>
 </html>
