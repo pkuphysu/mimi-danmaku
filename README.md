@@ -11,9 +11,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 Set up a mirror of electron before installation if necessary:
 ```bash
-export ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/" # *NIX command line
-set ELECTRON_MIRROR=https://cdn.npm.taobao.org/dist/electron/ # Windows CMD
-$env:ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/" # Windows PowerShell
+export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/" # 一般的 *NIX 命令行
+set ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ # 使用 Windows CMD 命令行
+$env:ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/" # Windows PowerShell
 ```
 
 From your command line:
